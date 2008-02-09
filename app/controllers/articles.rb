@@ -12,7 +12,7 @@ class Articles < Application
 
   def show
     @article = Article.find_by_param(params[:id])
-    #@comment = Comment.new(params[:comment])
+    @comment = Comment.new(params[:comment])
     render @article
   end
   
