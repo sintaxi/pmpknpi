@@ -23,6 +23,11 @@ puts "Compiling routes.."
 Merb::Router.prepare do |r|
   # RESTful routes
   # r.resources :posts
+  
+  # sessions
+  r.match("/login").to(:controller => "sessions", :action => "new")
+  r.match("/sessions/create").to(:controller => "sessions", :action => "create")
+  r.match("/logout").to(:controller => "sessions", :action => "destroy")
 
   # REGULAR RESOURCES
   r.resources :articles, :collection => {:admin => :get} do |article|

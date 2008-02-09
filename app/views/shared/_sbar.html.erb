@@ -4,7 +4,7 @@
     <h2 class="title"><%= link_to article.title, "/articles/#{article.to_param}", :class => 'popup' %></h2>
     <% if admin? %>
       <div class="admin panel">
-        <%= link_to 'edit', edit_article_url(article) %> |
+        <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
         <%= method_delete( 'destroy', "/articles/#{article.to_param}") %>
       </div>
     <% end %>
