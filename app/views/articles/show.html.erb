@@ -1,0 +1,10 @@
+<div id="article">
+  
+  <h1 class="title"><%= link_to @article.title, "/articles/#{@article.to_param}" %></h1>
+
+  <div class="body">
+    <%= @article.body_html %>
+  </div>
+  
+  
+</div>

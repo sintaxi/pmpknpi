@@ -1,0 +1,20 @@
+<div id="articles">
+  <h3 class="stitle">Recent Articles</h3>
+  <% for article in @articles %>
+    <h2 class="title"><%= link_to article.title, "/articles/#{article.to_param}", :class => 'popup' %></h2>
+    <% if admin? %>
+      <div class="admin panel">
+        <%= link_to 'edit', edit_article_url(article) %> |
+        <%= method_delete( 'destroy', "/articles/#{article.to_param}") %>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <br />
+  
+  <% if admin? %>
+    <div class="admin panel">
+      <%= link_to 'new article', "/articles/new" %>
+    </div>
+  <% end %>
+</div>

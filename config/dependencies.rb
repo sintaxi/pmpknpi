@@ -13,7 +13,7 @@ $LOAD_PATH.unshift(Merb.root / "lib")
 # use_orm :datamapper
 
 ### Uncomment for ActiveRecord ORM
-# use_orm :activerecord
+use_orm :activerecord
 
 ### Uncomment for Sequel ORM
 # use_orm :sequel
@@ -34,8 +34,17 @@ use_test :rspec
 # OR
 # dependencies "RedCloth" => "> 3.0", "ruby-aes-cext" => "= 1.0"
 
+dependencies  "rubygems",
+              "RedCloth",
+              "BlueCloth", 
+              "ERb", 
+              "coderay",
+              "merb_helpers"
+
 Merb::BootLoader.after_app_loads do
   ### Add dependencies here that must load after the application loads:
 
   # dependency "magic_admin" # this gem uses the app's model classes
 end
+
+SETTINGS = YAML.load_file("#{Merb.root}/config/settings.yml")[Merb.environment].symbolize_keys

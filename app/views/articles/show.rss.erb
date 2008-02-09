@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="<%= SETTINGS[:domain] %>">
+  <channel>
+    <title><%= SETTINGS[:title] %></title>
+    <link><%= SETTINGS[:domain] %></link>
+    <pubDate>Fri,03 Mar 2006 04:53:50 GMT</pubDate>
+    <description><%= SETTINGS[:description] %></description>
+    <% for article in @articles %>
+      <item>
+        <title><%= article.title %></title>
+        <link><%= SETTINGS[:domain] %>/articles/<%= article.permalink %></link>
+        <author><%= SETTINGS[:author] %></author>
+        <description><%= article.body_html %></description>
+        <pubDate><%= article.created_at %></pubDate>
+      </item>
+    <% end %>
+  </channel>
+</rss>

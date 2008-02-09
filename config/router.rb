@@ -24,12 +24,19 @@ Merb::Router.prepare do |r|
   # RESTful routes
   # r.resources :posts
 
+  # REGULAR RESOURCES
+  r.resources :articles, :collection => {:admin => :get} do |article|
+    article.resources :comments, :member => { :mod_up => :get, :mod_down => :get }
+    article.resources :tags
+  end
+  
   # This is the default route for /:controller/:action/:id
   # This is fine for most cases.  If you're heavily using resource-based
   # routes, you may want to comment/remove this line to prevent
   # clients from calling your create or destroy actions with a GET
   r.default_routes
   
-  # Change this for your home page to be available at /
-  # r.match('/').to(:controller => 'whatever', :action =>'index')
+  # Default
+  r.match('/').to(:controller => 'articles', :action =>'index')
+
 end
