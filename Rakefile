@@ -122,3 +122,36 @@ desc "Add new files to subversion"
 task :svn_add do
    system "svn status | grep '^\?' | sed -e 's/? *//' | sed -e 's/ /\ /g' | xargs svn add"
 end
+
+namespace :svn do
+  desc "configure subversion for new merb project"
+  task :setup do
+    
+    # ignore logs
+    system 'svn remove log/*'
+    system 'svn commit -m "removing all files from log/"'
+    system 'svn propset svn:ignore "*.log" log/'
+    system 'svn update log/'
+    system 'svn commit -m "Ignoring all files from log/ ending in .log"'
+    
+    # ignore databases
+    system 'svn remove db/*'
+    system 'svn commit -m "removing all .sqlite3 files from subversion"'
+    system 'svn propset svn:ignore "*.sqlite3" db/'
+    system 'svn update db/'
+    system 'svn commit -m "Ignoring all files from db/ ending in .sqlite3"'
+    
+    # ignore yml files
+    system 'svn propset svn:ignore "database.yml" config/'
+    system 'svn update config/'
+    system 'svn commit -m "ignoring database.yml file in config/"'
+    
+    # ignore pids
+    system 'svn remove log/*.pid'
+    system 'svn commit -m "removing pids files from log dir"'
+    system 'svn update log/'    
+    system 'svn propset svn:ignore "*.pid" log/'
+    system 'svn commit -m "ignoring all pid files in log dir"'
+    
+  end
+end
