@@ -1,7 +1,8 @@
 <% unless @articles.empty? %>
 <div id="article">
   
-  <h1 class="title"><%= link_to @articles.first.title, "/articles/#{@article.to_param}" %></h1>
+  <h1 class="title"><%= link_to @articles.first.title, "/articles/#{@articles.first.to_param}" %></h1>
+  <h2 class="created_at"><%= time_ago_in_words(@articles.first.created_at) %> ago</h2>
 
   <div class="body">
     <%= @articles.first.body_html %>
