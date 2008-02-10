@@ -5,17 +5,17 @@
 
   input[type='text'], input[type='password'], 
   input[type='checkbox'], select, textarea {
-  --background: #fff url(/images/inputbg.gif) -1px -1px no-repeat;
-  --border: 1px solid #ddd;
-  --border-top: 1px solid #aaa;
-  --border-left: 1px solid #aaa;
+  --xbackground: #fff url(/images/inputbg.gif) -1px -1px no-repeat;
+  --xborder: 1px solid #ddd;
+  --xborder-top: 1px solid #aaa;
+  --xborder-left: 1px solid #aaa;
   border-width:1px;
   font-family:Verdana, "Lucida Grande", Lucida, Helvetica, sans-serif;
   font-size: 1.8em;
   padding: 2px;
   }
   input[type='text']:focus, input[type='password']:focus, textarea:focus {
-  --background: #ffd;
+  --xbackground: #ffd;
   color: #000;
   }
   textarea{
@@ -34,9 +34,9 @@
   width:100%;
   }
   label {
-  --color:#444;
+  --xcolor:#444;
   font-weight: bold;
-  --text-shadow: #aaa 2px 2px;
+  --xtext-shadow: #aaa 2px 2px;
   margin-top: 10px;
   padding:0;
   display:block;
@@ -47,8 +47,8 @@
   form{
   background:#eee;
   padding:10px 25px 10px 20px;
-  --border:2px solid #666;
-  --width:700px;
+  --xborder:2px solid #666;
+  --xwidth:700px;
   }
 
 
