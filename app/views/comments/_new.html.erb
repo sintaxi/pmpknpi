@@ -1,1 +1,4 @@
-New Action for Comments
+<% form_for :comment, :action => "/articles/#{@article.to_param}/comments", :class => 'remote' do %>
+  <%= text_area_control :body, :label => 'Body', :id => 'comment_body' %>
+  <%= submit_button 'Submit' %>
+<% end %>

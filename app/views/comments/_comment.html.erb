@@ -1,1 +1,23 @@
-Index Action for Comments
+<% upclass = (comment.mods_up.split(',').include?(comment.author) ? 'modedup' : 'uparrow')
+   downclass = (comment.mods_down.split(',').include?(comment.author) ? 'modeddown' : 'downarrow') %>
+
+<div class="comment" id="comment_<%= comment.id %>">
+ <div class="arrows">
+   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/mod_up" class="<%= upclass %> remote" id="arrowup_<%= comment.id %>"></a></span>
+   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/mod_down" class="<%= downclass %> remote" id="arrowdown_<%= comment.id %>"></a></span>
+ </div>
+ <div class="comment-main">
+   <div class="comment-head">
+     <span class="name"><%#= comment.user.login %></span>
+     <span id="comment_<%= comment.id %>_points"><%= pluralize(comment.mods_count, 'Point') %></span>&nbsp;
+     <span class="time"><%= time_ago_in_words(comment.created_at) %> ago</span>
+   </div>
+   <div class="comment-body">
+     <%= comment.body_html %><br />
+     <!-- <h2>ups</h2> -->
+     <%#= comment.mods_up %>
+     <!-- <h2>downs</h2> -->
+      <%#= comment.mods_down %>
+   </div>
+ </div>
+</div>
