@@ -26,7 +26,7 @@ class Comments < Application
     @comment.author = @comment.mods_up = "#{request.remote_ip}--#{request.env["HTTP_USER_AGENT"]}"
     
     if @comment.save
-      render
+      redirect url(:article, @article)
     else
       render :action => :new
     end
@@ -39,19 +39,10 @@ class Comments < Application
   end
   
   def update
-    @comment = Comment.find(params[:id])
-    if @comment.update_attributes(params[:comment])
-      redirect url(:comment, @comment)
-    else
-      raise BadRequest
-    end
-  end
-  
-  def update
-    # this method is used for voting
     @article = Article.find_by_param(params[:article_id])
     @comment = Comment.find(params[:id])
-    @comment.mod(params[:mod])
+    @comment.mod(params[:mod], "#{request.remote_ip}--#{request.env["HTTP_USER_AGENT"]}")
+    @saved = @comment.save
     render
   end
   

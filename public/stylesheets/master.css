@@ -126,3 +126,12 @@ color:#aaa;
 margin-bottom:30px;
 }
 
+.new_comment textarea{
+height:300px;
+width:600px;
+}
+
+#article .body{
+border-bottom:1px dotted #000;
+}
+
