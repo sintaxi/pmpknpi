@@ -1,3 +1,4 @@
+# this helper is available in controllers and views
 module GlobalMixin
   
   def viewer_data

@@ -1,11 +1,11 @@
 ---
 # This is a sample database file for the ActiveRecord ORM
-:development: &defaults
+:development:
   :adapter: sqlite3
   :database: db/pmpknpi_development.sqlite3
 
 :test:
-  <<: *defaults
+  :adapter: sqlite3
   :database: db/pmpknpi_test.sqlite3
 
 :production:

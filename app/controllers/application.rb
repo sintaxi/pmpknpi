@@ -1,7 +1,7 @@
 # all your other controllers should inherit from this one to share code.
 class Application < Merb::Controller
-  require 'active_record_extension'
-  require 'global_mixin'; include GlobalMixin
+  include AuthenticatedSystem
+  include GlobalMixin
   
   before :articles
   
