@@ -23,12 +23,11 @@ class Comments < Application
     @article = Article.find_by_param(params[:article_id])
     @comment = Comment.new(params[:comment])
     @comment.article = @article
-    @comment.author = @comment.mods_up = "#{request.remote_ip}--#{request.env["HTTP_USER_AGENT"]}"
-    
-    if @comment.save
+    @comment.author = @comment.mods_up = viewer_data
+    if @comment.save 
       redirect url(:article, @article)
-    else
-      render :action => :new
+    else 
+      render :action => :new 
     end
   end
   
@@ -41,9 +40,13 @@ class Comments < Application
   def update
     @article = Article.find_by_param(params[:article_id])
     @comment = Comment.find(params[:id])
-    @comment.mod(params[:mod], "#{request.remote_ip}--#{request.env["HTTP_USER_AGENT"]}")
+    @comment.mod(params[:mod], viewer_data)
     @saved = @comment.save
-    render
+    if content_type == :html 
+      redirect "/articles/#{@article.to_param}"
+    else
+      render
+    end
   end
   
   def destroy

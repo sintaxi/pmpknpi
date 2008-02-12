@@ -37,8 +37,9 @@
   --xcolor:#444;
   font-weight: bold;
   --xtext-shadow: #aaa 2px 2px;
+  font-family:Arial;
   margin-top: 10px;
-  padding:0;
+  padding:2px 0;
   display:block;
   }
   form p{

@@ -1,2 +1,1 @@
-//alert("this comment has been modded <%= @mod %>")
 $("#comment_<%= @comment.id %>").replaceWith(<%= (partial "comments/comment", :with => @comment, :format => :html).to_json %>);

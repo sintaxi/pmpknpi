@@ -1,5 +1,9 @@
 module GlobalMixin
   
+  def viewer_data
+    @viewer_data ||= "#{request.remote_ip}--#{request.env["HTTP_USER_AGENT"].gsub(',', ';')}"
+  end
+  
   def web_authentication
     redirect '/login' unless admin?
   end

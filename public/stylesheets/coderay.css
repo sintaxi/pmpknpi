@@ -2,7 +2,7 @@
   background-color: #232323;
   --background-color:#080808;
   --border: 2px solid #666;
-  font-family: 'Courier New', 'Terminal', monospace;
+  font-family: 'Bitstream Vera Sans Mono', monaco, 'Courier New', 'Terminal', monospace;
   color: #E6E0DB;
   padding: 12px 5px 12px 22px;
   overflow: auto;
@@ -32,3 +32,43 @@
 .CodeRay .sy { color:#6C9CBD }                      /* symbol */
 .CodeRay .ta { color:#E7BE69 }                      /* html tag */
 .CodeRay .pc { color:#6C9CBD }                      /* boolean */
+
+/* --------------------------
+   Comment Code
+   -------------------------- */
+
+
+.comment .CodeRay {
+  background-color: #232323;
+  background-color:#f6f6f6;
+  --border: 1px solid #ccc;
+  font-family: 'Bitstream Vera Sans Mono', monaco, 'Courier New', 'Terminal', monospace;
+  color: #111;
+  padding: 12px 5px 12px 3px;
+  overflow: auto;
+  font-size: 11px;
+  margin: 10px 0;
+}
+.comment .CodeRay pre {
+  margin: 0px;
+  padding: 0px;
+}
+
+.comment .CodeRay .an { color:#000 }                      /* html attribute */
+.comment .CodeRay .c  { color:#000; font-style: italic; } /* comment */
+.comment .CodeRay .ch { color:#000 }                      /* escaped character */
+.comment .CodeRay .cl { color:#000 }                      /* class */
+.comment .CodeRay .co { color:#000 }                      /* constant */
+.comment .CodeRay .fl { color:#000 }                      /* float */
+.comment .CodeRay .fu { color:#000 }                      /* function */
+.comment .CodeRay .gv { color:#000 }                      /* global variable */
+.comment .CodeRay .i  { color:#000 }                      /* integer */
+.comment .CodeRay .il { background:transparent; }         /* inline code */
+.comment .CodeRay .iv { color:#000 }                      /* instance variable */
+.comment .CodeRay .pp { color:#000 }                      /* doctype */
+.comment .CodeRay .r  { color:#000 }                      /* keyword */
+.comment .CodeRay .rx { color:#000 }                      /* regex */
+.comment .CodeRay .s  { color:#000 }                      /* string */
+.comment .CodeRay .sy { color:#000 }                      /* symbol */
+.comment .CodeRay .ta { color:#000 }                      /* html tag */
+.comment .CodeRay .pc { color:#000 }                      /* boolean */

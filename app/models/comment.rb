@@ -2,13 +2,11 @@ class Comment < ActiveRecord::Base
   
   belongs_to :article
   
-  before_save :textilize_body
+  before_save :format_content
   
-  def textilize_body
-    self.body ||= ""
-    self.body_html = self.body
-    textilized = RedCloth.new(self.body_html)
-    self.body_html = textilized.to_html
+  def format_content
+    text = self.body ||= ""
+    self.body_html = sanitize_text(text)
   end
   
   def mod(direction, user_info)
