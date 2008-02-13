@@ -7,8 +7,8 @@ class Sessions < Application
   def create
     session[:password] = params[:password]
     redirect '/'
-    if admin?
-      redirect '/articles/'
+    if authorized?
+      redirect_back_or_default('/articles')
     end
   end
   

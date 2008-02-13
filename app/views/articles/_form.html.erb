@@ -1,6 +1,6 @@
 <%= error_messages_for @article %>
 <%= text_control :title, :label => 'Title ' %>
-<%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink' %>
-<%= text_control :intro, :label => 'Intro (optional) ', :id => 'article_intro', :class => 'long' %>
 <%= text_area_control :body, :label => 'Body (markdown)', :id => 'article_body', :class => 'long' %>
+<%#= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink' %>
+<%#= text_control :intro, :label => 'Intro (optional) ', :id => 'article_intro', :class => 'long' %>
 <%= submit_button 'Submit' %>
