@@ -1,0 +1,17 @@
+---
+# This is a sample database file for the ActiveRecord ORM
+:development:
+  :adapter: sqlite3
+  :database: db/pmpknpi_development.sqlite3
+
+:test:
+  :adapter: sqlite3
+  :database: db/pmpknpi_test.sqlite3
+
+:production:
+  :adapter: mysql
+  :database: pmpknpi_production.sqlite3
+  :username: the_user
+  :password: secrets
+  :host: localhost
+  :socket: /tmp/mysql.sock

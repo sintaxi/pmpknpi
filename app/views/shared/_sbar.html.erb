@@ -1,18 +1,23 @@
-<div id="articles">
-  <h3 class="stitle">Recent Articles</h3>
+
+
+
+<div id="article_list">
+  <h3>Recent Articles</h3>
+  <ul>
   <% for article in @articles %>
-    <h2 class="title"><%= link_to article.title, "/articles/#{article.to_param}", :class => 'popup' %></h2>
-    <% if admin? %>
+    <li><%= link_to article.title, "/articles/#{article.to_param}" %></li>
+    <% if authorized? %>
       <div class="admin panel">
         <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
         <%= method_delete( 'destroy', "/articles/#{article.to_param}") %>
       </div>
     <% end %>
   <% end %>
+  </ul>
   
   <br />
   
-  <% if admin? %>
+  <% if authorized? %>
     <div class="admin panel">
       <%= link_to 'new article', "/articles/new" %>
     </div>
