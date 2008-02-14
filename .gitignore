@@ -1,4 +1,8 @@
 *.log
 config.database.yml
+<<<<<<< HEAD:.gitignore
+=======
+db/*.sqlite3
+>>>>>>> 53a407d4c041adcf6a53098c47db6f91bd0f43ad:.gitignore
 log/*.pid
 .DS_Store
