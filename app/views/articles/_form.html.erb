@@ -1,6 +1,9 @@
 <%= error_messages_for @article %>
 <%= text_control :title, :label => 'Title ' %>
 <%= text_area_control :body, :label => 'Body (markdown)', :id => 'article_body', :class => 'long' %>
-<%#= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink' %>
-<%#= text_control :intro, :label => 'Intro (optional) ', :id => 'article_intro', :class => 'long' %>
-<%= submit_button 'Submit' %>
+<a class="right" href="#">More</a>
+<div class="form-more">
+  <%#= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink' %>
+  <%#= text_control :intro, :label => 'Intro (optional) ', :id => 'article_intro', :class => 'long' %>
+</div>
+<%= submit_button 'Submit', :class => 'submit' %>
