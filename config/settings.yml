@@ -5,7 +5,7 @@ defaults: &defaults
   description: "A blog api"
   author: "Brock Whitten"
   password: "foobar"
-  sanitizer: "markaby"
+  sanitizer: "None"
 
 development:
   <<: *defaults

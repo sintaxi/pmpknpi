@@ -15,7 +15,7 @@
   height:400px;
   font-size:1.2em;
   padding:1px;
-  margin-bottom:10px;
+  margin-bottom:2px;
   }
   input[type='text']{
   width:60%;
@@ -34,6 +34,9 @@
   display:block;
   font-size:1em;
   }
+  button.submit{
+  margin-top:10px;
+  }
   form p{
   margin:15px 0;
   }
@@ -41,22 +44,34 @@
   background:#eee;
   padding:10px 18px 10px 18px;
   }
+
+/*-------------------------------------
+  Form More
+  -------------------------------------*/
   
+  .form-more{
+    background:#ccc;
+    border:1px solid #bbb;
+    margin-top:10px;
+  }
+      
 /*-------------------------------------
   Comment Form
   -------------------------------------*/
   
-  form.new-comment{
-  --padding:0;
-  --background:transparent;
+  form.comment-new{
   max-width:600px;
   }
-  form.new-comment textarea{
+  form.comment-new textarea{
   height:200px;
   }
-/*  form.new-comment input[type='text'], form.new-comment input[type='password'], 
-  form.new-comment input[type='checkbox'], form.new-comment select, form.new-comment textarea {
-  border-width:2px;
-  }*/
+  
+/*-------------------------------------
+  Session Form
+  -------------------------------------*/
+
+  form.session-new{
+  padding:1px 20px 20px;
+  }
 
 

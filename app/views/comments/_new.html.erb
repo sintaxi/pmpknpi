@@ -1,4 +1,4 @@
-<% form_for :comment, :action => "/articles/#{@article.to_param}/comments", :class => 'new-comment' do %>
+<% form_for :comment, :action => "/articles/#{@article.to_param}/comments", :class => 'comment-new' do %>
   <%= text_control :name, :label => 'name (required)' %>
   <%= text_control :email, :label => 'email (will not be published)' %>
   <%= text_control :website, :label => 'website' %>

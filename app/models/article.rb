@@ -2,7 +2,7 @@ class Article < ActiveRecord::Base
 
   has_many :comments
   
-  validates_presence_of :title, :body
+  validates_presence_of :title
   before_save :create_permalink
   before_save :format_content
   
@@ -19,11 +19,7 @@ class Article < ActiveRecord::Base
   end
   
   def format_content
-    text = self.body ||= ""
-    self.body_html = sanitize_text(text)
-    
-    text = self.intro ||= ""
-    self.intro_html = sanitize_text(text)
+    self.body_html = filter(self.body)
   end
   
 end
