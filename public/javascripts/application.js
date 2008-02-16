@@ -47,6 +47,40 @@ $(document).ready(function() {
   //   resetForm: true
   // });
   
+  function SaveAsDraftCheck(){
+    if($("#article_draft").is(":checked")){
+      $("#publish_on").hide();
+    }else{
+      $("#publish_on").show();
+    }
+  }
+  $("#article_draft").click(function(){
+    $(document).ready(SaveAsDraftCheck);
+  });
+  $(document).ready(SaveAsDraftCheck);
+  
+  
+  $("a.excerpt_toggle").click(function () {
+    $("li.article_excerpt").toggle();
+    return false;
+  });
+  
+  
+  
+  //  // Add onclick handler to checkbox w/id checkme
+  // $("#checkme").click(function(){ 
+  //  // If checked
+  //  if ($("#checkme").is(":checked")){
+  //    //show the hidden div
+  //    $("#extra").show("fast");
+  //    }else{      
+  //    //otherwise, hide it
+  //    $("#extra").hide("fast");
+  //  }
+  // });
+
+
+  
   //Hide div w/id extra
   // $("#extra").css("display","none");
   //  // Add onclick handler to checkbox w/id checkme
