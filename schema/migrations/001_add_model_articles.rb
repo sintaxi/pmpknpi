@@ -11,7 +11,7 @@ class AddModelArticles < ActiveRecord::Migration
       t.column  :excerpt_html,    :text
       t.column  :body_html,       :text
       t.column  :filter,          :string
-      t.column  :published_on,    :date
+      t.column  :published_at,    :datetime
       t.timestamps
     end
     add_index :articles, :permalink

@@ -14,6 +14,7 @@ use_test :rspec
 ### Requrements
 require 'authenticated_system'
 require 'active_record_extension'
+require 'date_and_time_helpers'
 require 'global_mixin'
 
 ### Dependencies

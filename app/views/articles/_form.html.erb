@@ -8,11 +8,38 @@
 
 <%# Tagging to come in 0.4 release %>
 <%#= text_control :tags, :label => 'Tags (space separated)', :id => 'article_tags' %>
+<style type="text/css" media="screen">
+  ul.form_more{
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  }
+</style>
 
-<%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink' if params[:action] == 'edit' %>
 
-<% filter = params[:action] == "new" ? SETTINGS[:filter] : @article.filter %>
-<%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter %>
 
-<br />
-<%= submit_button 'Submit', :class => 'submit' %>
+<ul class="form_more">
+  <li>
+    <%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink', :class => 'small' if params[:action] == 'edit' %>
+  </li>
+
+  </li>
+    <% filter = params[:action] == "new" ? SETTINGS[:filter] : @article.filter %>
+  </li>
+
+  <li>
+    <%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter, :class => 'small' %>
+  </li>
+
+  <li class="clear small">
+    <%= checkbox_control :draft, :label => "Save as Draft", :id => 'article_draft' %>
+  </li>
+
+  <li class="small"><label>Publish on</label>
+    <%= datetime_control :published_at, :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 5), :order => [:month, :day, :year] %>
+  </li>
+  
+</ul>
+
+
+<%= submit_button 'Submit', :class => 'submit clear' %>

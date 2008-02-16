@@ -8,6 +8,8 @@ class Article < ActiveRecord::Base
   before_validation :create_permalink
   before_save :filter_content
   
+  attr_accessor :draft
+  
   def to_param
     permalink
   end
