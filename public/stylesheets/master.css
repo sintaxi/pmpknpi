@@ -242,8 +242,9 @@ Validations
 .submittal_failed{
 margin:0 0 10px;
 padding:10px 10px;
---background:pink;
---border:1px solid #510;
+background:#fcc;
+border-top:1px solid #510;
+border-bottom:1px solid #510;
 color:#510;
 }
 .submittal_failed h2{

@@ -2,8 +2,8 @@ class Article < ActiveRecord::Base
 
   has_many :comments
   
-  validates_presence_of :title, :permalink
-  validates_uniqueness_of :title, :permalink
+  validates_presence_of :title
+  validates_uniqueness_of :title
   
   before_validation :create_permalink
   before_save :filter_content
