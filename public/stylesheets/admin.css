@@ -28,3 +28,8 @@ border:1px solid #eee;
 padding:5px;
 font-weight:300;
 }
+
+
+h1.brand a{
+color:#aaa;
+}

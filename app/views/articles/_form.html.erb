@@ -1,15 +1,5 @@
-
-
-<%= text_control :title, :label => 'Title ' %>
-
-<%= text_area_control :excerpt, :label => 'Excerpt', :id => 'article_excerpt', :class => 'short' %>
-
-<%= text_area_control :body, :label => 'Body', :id => 'article_body' %>
-
-<%# Tagging to come in 0.4 release %>
-<%#= text_control :tags, :label => 'Tags (space separated)', :id => 'article_tags' %>
 <style type="text/css" media="screen">
-  ul.form_more{
+  form ul{
   list-style-type:none;
   margin:0;
   padding:0;
@@ -18,12 +8,31 @@
 
 
 
-<ul class="form_more">
+
+<%# Tagging to come in 0.4 release %>
+<%#= text_control :tags, :label => 'Tags (space separated)', :id => 'article_tags' %>
+
+
+<ul>
+  <li>
+    <%= text_control :title, :label => 'Title ' %>
+  </li>
+  
+  <li class="article_excerpt" style="display:none">
+    <label for="article_excerpt">Excerpt <a href="#" class="excerpt_toggle">Hide</a></label>
+    <textarea id="article_excerpt" class="short" name="article[excerpt]"></textarea>
+  </li>
+  
+  <li class="article_body">
+    <label for="article_body">Body <a href="#" class="excerpt_toggle">Add Except</a></label>
+    <textarea id="article_body" name="article[body]"></textarea>
+  </li>
+  
   <li>
     <%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink', :class => 'small' if params[:action] == 'edit' %>
   </li>
 
-  </li>
+  <li>
     <% filter = params[:action] == "new" ? SETTINGS[:filter] : @article.filter %>
   </li>
 
@@ -31,11 +40,13 @@
     <%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter, :class => 'small' %>
   </li>
 
-  <li class="clear small">
-    <%= checkbox_control :draft, :label => "Save as Draft", :id => 'article_draft' %>
+  <li>
+    <label for="article_draft">Save as Draft</label>
+    <input id="article_draft" class="checkbox" type="checkbox" value="1" name="article[draft]"/>
   </li>
 
-  <li class="small"><label>Publish on</label>
+  <li class="small" id="publish_on">
+    <label>Publish on</label>
     <%= datetime_control :published_at, :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 5), :order => [:month, :day, :year] %>
   </li>
   
