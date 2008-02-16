@@ -2,10 +2,10 @@
 # This is a sample settings file. Feel free to add your own.
 defaults: &defaults
   title: "PmpknPi"
-  description: "A blog api"
+  description: "Blog API written in Merb"
   author: "Brock Whitten"
   password: "foobar"
-  sanitizer: "None"
+  filter: "Markdown"
 
 development:
   <<: *defaults

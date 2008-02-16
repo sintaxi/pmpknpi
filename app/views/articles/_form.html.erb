@@ -1,9 +1,18 @@
-<%= error_messages_for @article %>
+
+
 <%= text_control :title, :label => 'Title ' %>
-<%= text_area_control :body, :label => 'Body (markdown)', :id => 'article_body', :class => 'long' %>
-<a class="right" href="#">More</a>
-<div class="form-more">
-  <%#= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink' %>
-  <%#= text_control :intro, :label => 'Intro (optional) ', :id => 'article_intro', :class => 'long' %>
-</div>
+
+<%= text_area_control :excerpt, :label => 'Excerpt', :id => 'article_excerpt', :class => 'short' %>
+
+<%= text_area_control :body, :label => 'Body', :id => 'article_body' %>
+
+<%# Tagging to come in 0.4 release %>
+<%#= text_control :tags, :label => 'Tags (space separated)', :id => 'article_tags' %>
+
+<%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink' if params[:action] == 'edit' %>
+
+<% filter = params[:action] == "new" ? SETTINGS[:filter] : @article.filter %>
+<%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter %>
+
+<br />
 <%= submit_button 'Submit', :class => 'submit' %>

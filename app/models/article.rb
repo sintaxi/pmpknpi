@@ -2,9 +2,11 @@ class Article < ActiveRecord::Base
 
   has_many :comments
   
-  validates_presence_of :title
-  before_save :create_permalink
-  before_save :format_content
+  validates_presence_of :title, :permalink
+  validates_uniqueness_of :title, :permalink
+  
+  before_validation :create_permalink
+  before_save :filter_content
   
   def to_param
     permalink
@@ -18,8 +20,11 @@ class Article < ActiveRecord::Base
     self.permalink = self.title.gsub(/\W+/, ' ').strip.downcase.gsub(/\ +/, '-') if permalink.blank?
   end
   
-  def format_content
-    self.body_html = filter(self.body)
+  def filter_content
+    self.body ||= ""
+    self.body_html = sanitize(self.body, self.filter)
+    self.excerpt ||= ""
+    self.excerpt_html = sanitize(self.excerpt, self.filter)
   end
   
 end

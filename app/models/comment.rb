@@ -2,11 +2,10 @@ class Comment < ActiveRecord::Base
   
   belongs_to :article
   
-  before_save :format_content
+  before_save :filter_content
   
-  def format_content
-    text = self.body ||= ""
-    self.body_html = sanitize_text(text)
+  def filter_content
+    self.body_html = sanitize(self.body, "Textile")
   end
   
   def mod(direction, user_info)

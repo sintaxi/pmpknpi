@@ -43,14 +43,16 @@ class Articles < Application
     if @article.update_attributes(params[:article])
       redirect url(:article)
     else
-      raise BadRequest
+      #raise BadRequest
+      render :action => :edit
     end
   end
 
   def destroy
     @article = Article.find_by_param(params[:id])
     if @article.destroy
-      redirect url(:articles)
+      redirect "/articles"
+      #redirect url(:articles)
     else
       raise BadRequest
     end

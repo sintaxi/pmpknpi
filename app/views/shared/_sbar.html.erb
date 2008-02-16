@@ -9,7 +9,7 @@
     <% if authorized? %>
       <div class="admin panel">
         <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
-        <%= method_delete( 'destroy', "/articles/#{article.to_param}") %>
+        <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %>
       </div>
     <% end %>
   <% end %>
