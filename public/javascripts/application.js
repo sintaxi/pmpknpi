@@ -2,7 +2,7 @@ $(document).ready(function() {
   
   // Listener
   $('body').click(function(event) {
-   
+     
      // remote link
      if ($(event.target).is('a.remote')) {
        $.ajax({
@@ -21,9 +21,8 @@ $(document).ready(function() {
        return false;
      }
      
-     
      // // remote delete
-     // if ($(event.target).is('a.delete')) {
+     // if ($(event.target).is('a.remote_delete')) {
      //   $.ajax({
      //     type: "POST",
      //     data: {_method: "delete"},
@@ -47,5 +46,19 @@ $(document).ready(function() {
   //   beforeSend: function(xhr) {xhr.setRequestHeader("Accept", "text/javascript");},
   //   resetForm: true
   // });
-   
+  
+  //Hide div w/id extra
+  // $("#extra").css("display","none");
+  //  // Add onclick handler to checkbox w/id checkme
+  // $("#checkme").click(function(){ 
+  //  // If checked
+  //  if ($("#checkme").is(":checked")){
+  //    //show the hidden div
+  //    $("#extra").show("fast");
+  //    }else{      
+  //    //otherwise, hide it
+  //    $("#extra").hide("fast");
+  //  }
+  // });
+     
 });

@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 2) do
     t.text     "excerpt_html"
     t.text     "body_html"
     t.string   "filter"
-    t.date     "published_on"
+    t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

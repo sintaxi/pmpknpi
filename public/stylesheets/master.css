@@ -150,7 +150,7 @@ line-height:170%;
 }
 
 /*-----------------------------------
-sidebar .articles
+ .articles
 -----------------------------------*/
 
 h2.created_at{
@@ -160,9 +160,18 @@ margin:0;
 color:#aaa;
 margin-bottom:30px;
 }
-
-#article .body{
---border-bottom:1px dotted #ccc;
+.article{
+padding-top:10px;
+}
+.article .meta{
+margin:0;
+--background:#f6f6f6;
+padding:7px 5px 5px;
+border-bottom:1px dotted #ccc;
+}
+.article .meta h3{
+margin:0;
+padding:0;
 }
 
 

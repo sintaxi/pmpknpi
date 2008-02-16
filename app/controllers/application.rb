@@ -8,7 +8,7 @@ class Application < Merb::Controller
   private
   
   def articles
-    @articles = Article.find(:all, :order => 'published_on DESC, created_at DESC')
+    @articles = Article.find(:all, :order => 'published_at DESC, created_at DESC')
   end
   
 end  

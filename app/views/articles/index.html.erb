@@ -1,14 +1,19 @@
 <% unless @articles.empty? %>
-<div id="article">
+  <% @articles.each do |article| %>
+    <div class="article">
   
-  <h1 class="title"><%= link_to @articles.first.title, "/articles/#{@articles.first.to_param}" %></h1>
-  <h2 class="created_at"><%= time_ago_in_words(@articles.first.created_at) %> ago</h2>
+      <h1 class="title"><%= link_to article.title, "/articles/#{article.to_param}" %></h1>
+      <h2 class="created_at"><%= time_ago_in_words(article.created_at) %> ago</h2>
 
-  <div class="body">
-    <%= @articles.first.body_html %>
-  </div>
+      <div class="body">
+        <%= article.excerpt_html.blank? ? article.body_html : article.excerpt_html %>
+      </div>
+      <div class="meta">
+        <h3><%= article.comments_count %> Comments</h3>
+      </div>
+    </div>
+  <% end %>
   
-</div>
 <% else %>
   <h3>There are no articles. <a href="/articles/new">Login</a> to add content.</h3>
 <% end %>
