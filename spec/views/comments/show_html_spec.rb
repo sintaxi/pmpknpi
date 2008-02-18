@@ -1,5 +1,5 @@
-require File.join(File.dirname(__FILE__),'..','..','spec_helper')
-
-describe "/comments/1" do
-  it "should spec the show view"
-end
+# require File.join(File.dirname(__FILE__),'..','..','spec_helper')
+# 
+# describe "/comments/1" do
+#   it "should spec the show view"
+# end
