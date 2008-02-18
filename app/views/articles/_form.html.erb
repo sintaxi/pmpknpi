@@ -14,9 +14,6 @@
   
   <% filter = @article.new_record? ? SETTINGS[:filter] : @article.filter %>
   <li><%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter, :class => 'small' %></li>
-
-  <!-- <li><label for="article_draft">Save as Draft</label>
-  <input id="article_draft" class="checkbox" type="checkbox" value="1" name="article[draft]" chacked /></li> -->
   
   <%= checkbox_control :draft, :label => "Save as Draft" %>
 
