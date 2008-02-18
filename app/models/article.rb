@@ -9,15 +9,29 @@ class Article < ActiveRecord::Base
   before_save :filter_content
   before_save :draft_check
   
-  #attr_accessor :draft
+  attr_accessor :draft
   
   def to_param
     permalink
   end
   
-  def self.find_by_param(*args)
-    find_by_permalink *args
+  def draft
+    true if published_at.nil? && !new_record?
   end
+  
+  # Find methods
+  
+  class << self
+    def find_by_param(*args)
+      find_by_permalink *args
+    end
+    
+    def with_published(&block)
+      with_scope({:find => { :conditions => ['published_at <= ? AND published_at IS NOT NULL', Time.now] } }, &block)
+    end
+  end
+  
+  protected
   
   def create_permalink
     self.permalink = self.title.gsub(/\W+/, ' ').strip.downcase.gsub(/\ +/, '-') if permalink.blank?
@@ -28,10 +42,6 @@ class Article < ActiveRecord::Base
     self.body_html = sanitize(self.body, self.filter)
     self.excerpt ||= ""
     self.excerpt_html = sanitize(self.excerpt, self.filter)
-  end
-  
-  def draft
-    true if published_at.nil? && !new_record?
   end
   
   def draft_check

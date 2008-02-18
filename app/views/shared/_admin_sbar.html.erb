@@ -1,0 +1,37 @@
+<style type="text/css" media="screen">
+  .article_list h3{
+  border-bottom:1px dotted #ccc;
+  }
+  .article_list ul{
+  list-style-type:none;
+  padding:0;
+  }
+  .article_list li{
+  padding:4px 0;
+  }
+</style>
+
+<div id="published_list" class="article_list">
+  <h3>Published Articles</h3>
+  <ul>
+  <% for article in @articles %>
+    <li><%= link_to article.title, "/articles/#{article.to_param}" %> |
+    <%= link_to 'edit', "/articles/#{article.to_param}/edit" %>
+    <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %></li>
+  <% end %>
+  </ul>
+</div>
+
+<% unless @drafts.empty? %>
+  <div id="draft_list" class="article_list">
+    <h3>Drafts</h3>
+    <ul>
+    <% for article in @drafts %>
+      <li><%= link_to article.title, "/articles/#{article.to_param}" %> |
+      <%= link_to 'edit', "/articles/#{article.to_param}/edit" %>
+      <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+<%= link_to 'new article', "/articles/new" %>

@@ -71,4 +71,5 @@ class Articles < Application
   def admin_action?
     ['edit', 'new'].include? params[:action]
   end
+  
 end
