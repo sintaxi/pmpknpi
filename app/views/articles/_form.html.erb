@@ -6,51 +6,20 @@
   }
 </style>
 
-
-
-
-<%# Tagging to come in 0.4 release %>
-<%#= text_control :tags, :label => 'Tags (space separated)', :id => 'article_tags' %>
-
-
 <ul>
-  <li>
-    <%= text_control :title, :label => 'Title ' %>
-  </li>
+  <li><%= text_control :title, :label => 'Title ' %></li>
+  <li class="article_excerpt" <%= 'style="display:none"' if @article.excerpt.blank? %>><%= text_area_control :excerpt, :label => 'Excerpt <a href="#" class="excerpt_toggle">Hide</a>', :id => 'article_excerpt', :class => "short" %></li>
+  <li><%= text_area_control :body, :label => 'Body <a href="#" class="excerpt_toggle">Add Except</a> ', :id => 'article_body' %></li>  
+  <li><%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink', :class => 'small' unless @article.new_record? %></li>
   
-  <li class="article_excerpt" style="display:none">
-    <label for="article_excerpt">Excerpt <a href="#" class="excerpt_toggle">Hide</a></label>
-    <textarea id="article_excerpt" class="short" name="article[excerpt]"></textarea>
-  </li>
+  <% filter = @article.new_record? ? SETTINGS[:filter] : @article.filter %>
+  <li><%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter, :class => 'small' %></li>
+
+  <!-- <li><label for="article_draft">Save as Draft</label>
+  <input id="article_draft" class="checkbox" type="checkbox" value="1" name="article[draft]" chacked /></li> -->
   
-  <li class="article_body">
-    <label for="article_body">Body <a href="#" class="excerpt_toggle">Add Except</a></label>
-    <textarea id="article_body" name="article[body]"></textarea>
-  </li>
-  
-  <li>
-    <%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink', :class => 'small' if params[:action] == 'edit' %>
-  </li>
+  <%= checkbox_control :draft, :label => "Save as Draft" %>
 
-  <li>
-    <% filter = params[:action] == "new" ? SETTINGS[:filter] : @article.filter %>
-  </li>
-
-  <li>
-    <%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter, :class => 'small' %>
-  </li>
-
-  <li>
-    <label for="article_draft">Save as Draft</label>
-    <input id="article_draft" class="checkbox" type="checkbox" value="1" name="article[draft]"/>
-  </li>
-
-  <li class="small" id="publish_on">
-    <label>Publish on</label>
-    <%= datetime_control :published_at, :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 5), :order => [:month, :day, :year] %>
-  </li>
-  
+  <li class="small" id="publish_on"><label>Publish on</label>
+  <%= datetime_control :published_at, :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 4), :order => [:month, :day, :year] %></li>
 </ul>
-
-
-<%= submit_button 'Submit', :class => 'submit clear' %>
