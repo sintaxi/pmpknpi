@@ -12,8 +12,9 @@ padding:60px 50px 60px 60px;
 min-width:700px;
 }
 #masthead{
+border-bottom:1px dotted #ccc;
 margin-bottom:10px;
-display:none;
+--background:#000;
 }
 #main{
 width:66%;
@@ -81,11 +82,9 @@ h1.domain, h1.domain a{
 letter-spacing:-.06em;
 margin:0;
 padding:0;
-padding-left:4px;
-padding-top:4px;
 line-height:1em;
 color:#777;
-font-size:3.8em;
+font-size:1.8em;
 text-decoration:none;
 }
 

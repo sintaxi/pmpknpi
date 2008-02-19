@@ -1,0 +1,6 @@
+CREATE TABLE articles ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "title" varchar(255) DEFAULT NULL, "permalink" varchar(255) DEFAULT NULL, "comments_count" integer DEFAULT 0, "commenting" boolean DEFAULT NULL, "publish" boolean DEFAULT NULL, "excerpt" text DEFAULT NULL, "body" text DEFAULT NULL, "excerpt_html" text DEFAULT NULL, "body_html" text DEFAULT NULL, "filter" varchar(255) DEFAULT NULL, "published_at" datetime DEFAULT NULL, "created_at" datetime DEFAULT NULL, "updated_at" datetime DEFAULT NULL);
+CREATE TABLE comments ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "article_id" integer DEFAULT NULL, "author" varchar(255) DEFAULT NULL, "name" varchar(255) DEFAULT NULL, "email" varchar(255) DEFAULT NULL, "website" varchar(255) DEFAULT NULL, "mods_up" text DEFAULT '', "mods_down" text DEFAULT '', "mods_count" integer DEFAULT 1, "body" text DEFAULT NULL, "body_html" text DEFAULT NULL, "created_at" datetime DEFAULT NULL, "updated_at" datetime DEFAULT NULL);
+CREATE TABLE schema_info (version integer);
+CREATE INDEX "index_articles_on_permalink" ON articles ("permalink");
+CREATE INDEX "index_articles_on_publish" ON articles ("publish");
+INSERT INTO schema_info (version) VALUES (2)

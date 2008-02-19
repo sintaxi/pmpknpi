@@ -15,8 +15,12 @@
   <% filter = @article.new_record? ? SETTINGS[:filter] : @article.filter %>
   <li><%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter, :class => 'small' %></li>
   
-  <%= checkbox_control :draft, :label => "Save as Draft" %>
-
+  <% if @article.published_at.nil? && !@article.new_record? %>
+    <%= checkbox_control :draft, :label => "Save as Draft", :checked => "checked" %>
+  <% else %>
+    <%= checkbox_control :draft, :label => "Save as Draft" %>
+  <% end %>
+  
   <li class="small" id="publish_on"><label>Publish on</label>
   <%= datetime_control :published_at, :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 4), :order => [:month, :day, :year] %></li>
 </ul>

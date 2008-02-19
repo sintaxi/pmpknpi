@@ -5,7 +5,7 @@ class Article < ActiveRecord::Base
   validates_presence_of :title
   validates_uniqueness_of :title
   
-  before_validation :create_permalink
+  before_save :create_permalink
   before_save :filter_content
   before_save :draft_check
   
@@ -14,10 +14,10 @@ class Article < ActiveRecord::Base
   def to_param
     permalink
   end
-  
-  def draft
-    true if published_at.nil? && !new_record?
-  end
+    
+  # def draft
+  #   true if published_at.nil? && !new_record?
+  # end
   
   # Find methods
   
@@ -31,8 +31,6 @@ class Article < ActiveRecord::Base
     end
   end
   
-  protected
-  
   def create_permalink
     self.permalink = self.title.gsub(/\W+/, ' ').strip.downcase.gsub(/\ +/, '-') if permalink.blank?
   end
@@ -45,7 +43,7 @@ class Article < ActiveRecord::Base
   end
   
   def draft_check
-    self.published_at = nil if self.draft == "1"
+    self.published_at = nil if self.draft.to_s == "1"
   end
   
 end
