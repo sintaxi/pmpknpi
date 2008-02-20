@@ -2,10 +2,23 @@ class Comment < ActiveRecord::Base
   
   belongs_to :article
   
+  validates_presence_of :article_id, :name, :email, :body
+  
+  validates_format_of   :email,   
+    :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
+  
+  validates_format_of   :website, 
+    :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,
+    :if => :website_submitted?
+  
   before_save :filter_content
   
   def filter_content
     self.body_html = sanitize(self.body, "Textile")
+  end
+  
+  def website_submitted?
+    !self.website.blank?
   end
   
   def mod(direction, user_info)

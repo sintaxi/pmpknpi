@@ -1,7 +1,11 @@
+<div class="comment_errors">
+  <%= error_messages_for @comment %>  
+</div>
+
 <% form_for :comment, :action => "/articles/#{@article.to_param}/comments", :class => 'comment-new' do %>
-  <%= text_control :name, :label => 'name (required)' %>
-  <%= text_control :email, :label => 'email (will not be published)' %>
-  <%= text_control :website, :label => 'website' %>
-  <%= text_area_control :body, :label => 'body', :id => 'comment_body' %>
+  <%= text_control :name, :label => 'name', :class => 'required' %>
+  <%= text_control :email, :label => 'email (not published)', :class => 'email' %>
+  <%= text_control :website, :label => 'website (optional)', :class => 'website' %>
+  <%= text_area_control :body, :label => 'body', :id => 'comment_body', :class => 'required' %>
   <%= submit_button 'Submit' %>
 <% end %>

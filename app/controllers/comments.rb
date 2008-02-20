@@ -26,8 +26,9 @@ class Comments < Application
     @comment.author = @comment.mods_up = viewer_data
     if @comment.save 
       redirect url(:article, @article)
-    else 
-      render :action => :new 
+    else
+      #redirect url(:article, @article)
+      render :template => "articles/show"
     end
   end
   

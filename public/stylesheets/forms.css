@@ -83,8 +83,8 @@
 /*-------------------------------------
   Error Form
   -------------------------------------*/
-  input[type='text'].error{
-  --xborder:1px solid #510;
+  input[type='text'].error, textarea.error{
+  border:1px solid orange;
   }
 
 

@@ -258,3 +258,10 @@ margin:5px;
 --font-weight:bold;
 }
 
+.comment_errors .submittal_failed{
+background: lightyellow;
+border-color:#cc9500;
+color:#ab8500;
+max-width:516px;
+}
+
