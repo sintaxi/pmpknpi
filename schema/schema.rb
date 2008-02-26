@@ -15,8 +15,7 @@ ActiveRecord::Schema.define(:version => 2) do
     t.string   "title"
     t.string   "permalink"
     t.integer  "comments_count", :default => 0
-    t.boolean  "commenting"
-    t.boolean  "publish"
+    t.integer  "commenting",     :default => 0
     t.text     "excerpt"
     t.text     "body"
     t.text     "excerpt_html"
@@ -27,7 +26,7 @@ ActiveRecord::Schema.define(:version => 2) do
     t.datetime "updated_at"
   end
 
-  add_index "articles", ["publish"], :name => "index_articles_on_publish"
+  add_index "articles", ["published_at"], :name => "index_articles_on_published_at"
   add_index "articles", ["permalink"], :name => "index_articles_on_permalink"
 
   create_table "comments", :force => true do |t|
@@ -44,5 +43,7 @@ ActiveRecord::Schema.define(:version => 2) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["article_id"], :name => "index_comments_on_article_id"
 
 end

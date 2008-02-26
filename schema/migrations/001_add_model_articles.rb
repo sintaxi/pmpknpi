@@ -4,8 +4,7 @@ class AddModelArticles < ActiveRecord::Migration
       t.column  :title,           :string
       t.column  :permalink,       :string
       t.column  :comments_count,  :integer,   :default => 0
-      t.column  :commenting,      :boolean
-      t.column  :publish,         :boolean
+      t.column  :commenting,      :integer,   :default => 0
       t.column  :excerpt,         :text
       t.column  :body,            :text
       t.column  :excerpt_html,    :text
@@ -15,7 +14,7 @@ class AddModelArticles < ActiveRecord::Migration
       t.timestamps
     end
     add_index :articles, :permalink
-    add_index :articles, :publish
+    add_index :articles, :published_at
   end
 
   def self.down

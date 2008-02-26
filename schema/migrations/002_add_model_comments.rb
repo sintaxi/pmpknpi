@@ -13,7 +13,8 @@ class AddModelComments < ActiveRecord::Migration
       t.column :body_html,          :text
       t.column :created_at,         :datetime
       t.column :updated_at,         :datetime
-    end    
+    end
+    add_index :comments, :article_id
   end
 
   def self.down
