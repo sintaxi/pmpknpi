@@ -1,3 +1,5 @@
+= Description
+
 = Dependencies
   - merb 0.5.3
   - merb_helpers
