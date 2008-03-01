@@ -20,8 +20,7 @@ require 'global_mixin'
 ### Dependencies
 dependencies  "rubygems",
               "RedCloth",
-              "BlueCloth", 
-              #{}"ERb", 
+              "BlueCloth",
               "coderay",
               "merb_helpers"
 

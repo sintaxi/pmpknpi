@@ -1,26 +1,28 @@
 class Article < ActiveRecord::Base
-
+  
+  # ASSOCIATIONS
   has_many :comments
   
+  # VALIDATIONS
   validates_presence_of :title
   validates_uniqueness_of :title
   
+  # CALLBACKS
   before_save :create_permalink
   before_save :filter_content
   before_save :draft_check
   
+  # PLUGINS
+  acts_as_sanitizer
+  
+  # ACCESSORS
   attr_accessor :draft
   
   def to_param
     permalink
   end
-    
-  # def draft
-  #   true if published_at.nil? && !new_record?
-  # end
   
-  # Find methods
-  
+  # FINDS
   class << self
     def find_by_param(*args)
       find_by_permalink *args
@@ -31,6 +33,7 @@ class Article < ActiveRecord::Base
     end
   end
   
+  # BEFORE
   def create_permalink
     self.permalink = self.title.gsub(/\W+/, ' ').strip.downcase.gsub(/\ +/, '-') if permalink.blank?
   end
