@@ -85,20 +85,23 @@ describe Article do
   
   it "should convert Markdown to html" do
     @article.attributes = valid_article_attributes
-    @article.filter_content
+    @article.filter_columns
     @article.body_html.should == html
+    @article.body.should == body_markdown
   end
   
   it "should convert Textile to html" do
     @article.attributes = valid_article_attributes.with(:body => body_textile, :filter => "Textile")
-    @article.filter_content
+    @article.filter_columns
     @article.body_html.should == html
+    @article.body.should == body_textile
   end
   
   it "should convert Plain HTML to html" do
     @article.attributes = valid_article_attributes.with(:body => body_plain_html, :filter => "Plain HTML")
-    @article.filter_content
+    @article.filter_columns
     @article.body_html.should == html
+    @article.body.should == body_plain_html
   end
   
   it "should create permalink" do

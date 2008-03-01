@@ -1,19 +1,28 @@
 module Sintaxi
-  module ActsAsSanitizer
+  module FilteredLight
     
     def self.included(base)
       base.extend ActMethods
     end
     
     module ActMethods
-      def acts_as_sanitizer
+      def filtered_light(*columns)
         unless included_modules.include? InstanceMethods
           include InstanceMethods
+          class_inheritable_accessor :unfiltered
+          before_save :filter_columns
         end
+        self.unfiltered ||= columns ||= []    
       end
     end
     
     module InstanceMethods
+      def filter_columns
+        unfiltered.each do |column|
+          send "#{column}_html=", sanitize(send(column).to_s.dup, self.filter)
+        end
+      end
+    
       def sanitize(text, filter="Plain HTML")
         textilized = case filter
           when "Markdown" then sanitize_code(BlueCloth.new(text)).to_html
@@ -33,4 +42,4 @@ module Sintaxi
   end    
 end
 
-ActiveRecord::Base.send :include, Sintaxi::ActsAsSanitizer
+ActiveRecord::Base.send :include, Sintaxi::FilteredLight

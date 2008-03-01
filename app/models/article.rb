@@ -9,11 +9,10 @@ class Article < ActiveRecord::Base
   
   # CALLBACKS
   before_save :create_permalink
-  before_save :filter_content
   before_save :draft_check
   
   # PLUGINS
-  acts_as_sanitizer
+  filtered_light :body, :excerpt
   
   # ACCESSORS
   attr_accessor :draft
@@ -33,16 +32,9 @@ class Article < ActiveRecord::Base
     end
   end
   
-  # BEFORE
+  # BEFORES
   def create_permalink
     self.permalink = self.title.gsub(/\W+/, ' ').strip.downcase.gsub(/\ +/, '-') if permalink.blank?
-  end
-  
-  def filter_content
-    self.body ||= ""
-    self.body_html = sanitize(self.body, self.filter)
-    self.excerpt ||= ""
-    self.excerpt_html = sanitize(self.excerpt, self.filter)
   end
   
   def draft_check
