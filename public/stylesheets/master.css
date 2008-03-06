@@ -83,7 +83,7 @@ letter-spacing:-.06em;
 margin:0;
 padding:0;
 line-height:1em;
-color:#777;
+color:#ccc;
 font-size:1.8em;
 text-decoration:none;
 }
@@ -99,6 +99,7 @@ letter-spacing:-.06em;
 padding:5px 0 10px 0;
 line-height:1em;
 color:#F2096B;
+color:#ccc;
 font-size:.8em;
 text-decoration:none;
 }
@@ -159,7 +160,7 @@ margin:0;
 color:#aaa;
 margin-bottom:30px;
 }
-.article{
+.article, #article{
 padding-top:10px;
 }
 .article .meta{
