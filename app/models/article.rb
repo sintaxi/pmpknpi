@@ -12,7 +12,7 @@ class Article < ActiveRecord::Base
   before_save :draft_check
   
   # PLUGINS
-  filtered_light :body, :excerpt
+  merb_can_filter :body, :excerpt
   
   # ACCESSORS
   attr_accessor :draft

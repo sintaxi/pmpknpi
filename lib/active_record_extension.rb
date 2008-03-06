@@ -6,7 +6,7 @@ module Sintaxi
     end
     
     module ActMethods
-      def filtered_light(*columns)
+      def merb_can_filter(*columns)
         unless included_modules.include? InstanceMethods
           include InstanceMethods
           class_inheritable_accessor :unfiltered
