@@ -21,11 +21,10 @@ class Comments < Application
   
   def create
     @article = Article.find_by_param(params[:article_id])
-    @comment = Comment.new(params[:comment])
-    @comment.article = @article
+    @comment = Comment.new(params[:comment].merge(:article => @article))
     @comment.author = @comment.mods_up = viewer_data
     if @comment.save 
-      redirect url(:article, @article)
+      redirect "/articles/#{@article.to_param}"
     else
       #redirect url(:article, @article)
       render :template => "articles/show"
@@ -43,7 +42,7 @@ class Comments < Application
     @comment = Comment.find(params[:id])
     @comment.mod(params[:mod], viewer_data)
     @saved = @comment.save
-    if content_type == :html 
+    if content_type == :html
       redirect "/articles/#{@article.to_param}"
     else
       render

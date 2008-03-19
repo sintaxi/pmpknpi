@@ -1,29 +1,21 @@
-<style type="text/css" media="screen">
-  form ul{
-  list-style-type:none;
-  margin:0;
-  padding:0;
-  }
-</style>
-
 <ul>
   <li><%= text_control :title, :label => 'Title ' %></li>
   <li class="article_excerpt" <%= 'style="display:none"' if @article.excerpt.blank? %>><%= text_area_control :excerpt, :label => 'Excerpt <a href="#" class="excerpt_toggle">Hide</a>', :id => 'article_excerpt', :class => "short" %></li>
   <li><%= text_area_control :body, :label => 'Body <a href="#" class="excerpt_toggle">Add Except</a> ', :id => 'article_body' %></li>
   <li><%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink', :class => 'small' unless @article.new_record? %></li>
   
-  <% filter = @article.new_record? ? SETTINGS[:filter] : @article.filter %>
+  <% filter = @article.new_record? ? SETTINGS["filter"] : @article.filter %>
   <li><%= select_control :filter, :collection => ["Plain HTML", "Markdown", "Textile"], :label => 'Filter', :selected => filter, :class => 'small' %></li>
   
   <%# foo = [["-1", "not allowed"], ["0", "never expire"], ["1", "24 hour expiry"], ["7", "1 week expiry date"], ["30", "1 month expiry date"], ["90", "three month expiry date"]] %>
   <%# options = options_for_select(foo, :text_method => [][0] , :value_method => [][1], :selected => "0") %>
-  <li><%#= select_control :commenting, { :collection => options, :label => 'Comments', :class => 'small'} %></li>
+  <!-- <li><%#= select_control :commenting, { :collection => options, :label => 'Comments', :class => 'small'} %></li> -->
   
-  <% if @article.published_at.nil? && !@article.new_record? %>
+  <li><% if @article.published_at.nil? && !@article.new_record? %>
     <%= checkbox_control :draft, :label => "Save as Draft", :checked => "checked" %>
   <% else %>
     <%= checkbox_control :draft, :label => "Save as Draft" %>
-  <% end %>
+  <% end %></li>
   
   <li class="small" id="publish_on"><label>Publish on</label>
   <%= datetime_control :published_at, :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 4), :order => [:month, :day, :year] %></li>

@@ -59,7 +59,11 @@
   text-decoration:none;
   font-size:11px;
   }
-      
+  form ul{
+  list-style-type:none;
+  margin:0;
+  padding:0;
+  }
 /*-------------------------------------
   Comment Form
   -------------------------------------*/
