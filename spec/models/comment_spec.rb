@@ -47,7 +47,7 @@ describe Comment do
 
 end
 
-describe Comment, "email-address" do
+describe Comment, "email" do
   
   include CommentSpecHelper
   
@@ -110,8 +110,18 @@ describe Comment, "website" do
     @comment.should_not be_valid
   end
   
+  it "should pass if http://www.sonicyouth.com" do
+    @comment.attributes = valid_comment_attributes.with(:website => "http://www.sonicyouth.com")
+    @comment.should be_valid
+  end
+  
   it "should pass if http://sonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:website => "http://sonicyouth.com")
+    @comment.should be_valid
+  end
+  
+  it "should pass if https://sonicyouth.com" do
+    @comment.attributes = valid_comment_attributes.with(:website => "https://sonicyouth.com")
     @comment.should be_valid
   end
 
