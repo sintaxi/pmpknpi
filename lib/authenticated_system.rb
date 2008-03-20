@@ -9,7 +9,7 @@ module AuthenticatedSystem
 
   # Check if the user is authorized.
   def authorized?
-    session[:password] == SETTINGS[:password]
+    session[:password] == SETTINGS["password"]
   end
 
   # Filter method to enforce a login requirement.

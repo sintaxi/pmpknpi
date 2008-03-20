@@ -19,7 +19,7 @@
 # You can also use regular expressions, deferred routes, and many other options.
 # See merb/specs/merb/router.rb for a fairly complete usage sample.
 
-puts "Compiling routes.."
+Merb.logger.info("Compiling routes...")
 Merb::Router.prepare do |r|
   
   # sessions
@@ -34,7 +34,7 @@ Merb::Router.prepare do |r|
   # REGULAR RESOURCES
   r.resources :articles, :collection => {:admin => :get} do |article|
     article.resources :comments, :member => { :mod_up => :get, :mod_down => :get }
-    article.resources :tags
+    #article.resources :tags
   end
   
   # This is the default route for /:controller/:action/:id

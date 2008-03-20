@@ -1,5 +1,5 @@
 module Merb
-  module GlobalHelper
+  module GlobalHelpers
     include Merb::Helpers::RailsDateAndTime
         
     # this method is no linger being used

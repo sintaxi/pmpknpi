@@ -7,11 +7,9 @@ $LOAD_PATH.unshift(Merb.root / "lib")
 
 
 Merb::Config.use do |c|
-  
   ### Sets up a custom session id key, if you want to piggyback sessions of other applications
   ### with the cookie session store. If not specified, defaults to '_session_id'.
-  # c[:session_id_key] = '_session_id'
-  
+  c[:session_id_key] = 'pmpknpi_session_id'
   c[:session_secret_key]  = '669bed3f14d49f3bfa52530312c225f3753455e1'
   c[:session_store] = 'cookie'
 end  
@@ -24,16 +22,16 @@ use_test :rspec
 
 ### Requrements
 require 'authenticated_system'
-#require 'active_record_extension'
 require 'date_and_time_helpers'
 require 'global_mixin'
+require 'active_record_extension'
 
 ### Dependencies
 dependencies  "rubygems",
-              "RedCloth",
-              "BlueCloth",
               "coderay",
-              "merb_helpers"
+              "merb_helpers",
+              "merb-more",
+              "merb_can_filter"
 
 ### Add your other dependencies here
 
@@ -47,9 +45,11 @@ dependencies  "rubygems",
 
 Merb::BootLoader.after_app_loads do
   ### Add dependencies here that must load after the application loads:
-
   # dependency "magic_admin" # this gem uses the app's model classes
 end
+
+# YAML FILES
+SETTINGS = YAML.load_file("#{Merb.root}/config/settings.yml")[Merb.environment]
 
 # MIME TYPES
 Merb.add_mime_type(:rss, :to_xml, %w[application/rss+xml])
