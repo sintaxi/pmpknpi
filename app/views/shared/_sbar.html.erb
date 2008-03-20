@@ -1,25 +1,11 @@
-
-
-
-<div id="article_list">
-  <h3>Recent Articles</h3>
-  <ul>
-  <% for article in @articles %>
-    <li><%= link_to article.title, "/articles/#{article.to_param}" %></li>
-    <% if authorized? %>
-      <div class="admin panel">
-        <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
-        <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %>
-      </div>
+<% unless @articles.empty? %>
+  <h1 class="brand"><a href="/articles.rss">Subscribe</a></h1>
+  <div id="article_list">
+    <h3>Recent Articles</h3>
+    <ul>
+    <% for article in @articles %>
+      <li><%= link_to article.title, "/articles/#{article.to_param}" %></li>
     <% end %>
-  <% end %>
-  </ul>
-  
-  <br />
-  
-  <% if authorized? %>
-    <div class="admin panel">
-      <%= link_to 'new article', "/articles/new" %>
-    </div>
-  <% end %>
-</div>
+    </ul>
+  </div>
+<% end %>

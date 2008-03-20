@@ -1,9 +1,13 @@
-<% unless @articles.empty? %>
+<% if !@articles.empty? %>
   <% @articles.each do |article| %>
     <div class="article">
   
-      <h1 class="title" title="<%= article.published_at.strftime("%Y-%m-%d") %>"><%= link_to article.title, "/articles/#{article.to_param}" %></h1>
-      <h2 class="created_at"><%= time_ago_in_words(article.published_at) %> ago</h2>
+      <h1 class="title" title="<%= article.published_at.strftime("%Y-%m-%d") unless article.published_at.nil? %>">
+        <%= link_to article.title, "/articles/#{article.to_param}" %></h1>
+      <h2 class="created_at"><%#= time_ago_in_words(article.published_at) + ' ago' unless article.published_at.nil? %>
+        <%= article.published_at.nil? ? 'unpublished' : time_ago_in_words(article.published_at) + ' ago' %> /
+        <%= pluralize article.comments.count, 'Comment' %>
+      </h2>
 
       <div class="body">
         <%= article.excerpt_html.blank? ? article.body_html : article.excerpt_html %>
@@ -14,6 +18,9 @@
     </div>
   <% end %>
   
+<% elsif !logged_in? %>
+  <h2>Congratulations! you have a blog</h2>
+  <p>To get started login at <a href="/articles/new"><%= SETTINGS["domain"] %>/admin</a>. Your password is <strong>'<%= SETTINGS["password"] %>'</strong>. This can be changed in your config/settings.yml file.</p>
 <% else %>
-  <h3>There are no articles. <a href="/articles/new">Login</a> to add content.</h3>
+  <h2>Success! time to start publishing.</h2>
 <% end %>

@@ -24,11 +24,12 @@
         <%= catch_content :for_layout %>
       </div>
       
+      <% unless params[:controller] == 'sessions' %>
       <div id="sbar">
-        <h1 class="brand"><a href="/articles.rss">Subscribe</a></h1>
-        <%= partial "shared/sbar" unless params[:controller] == 'sessions' %>
+        <%= partial "shared/sbar" %>
         <%= catch_content :sidebar %>
       </div>
+      <% end %>
       
       <div id="footer">
         <h4>powered by <a href="http://pmpknpi.com">PmpknPi</a> &nbsp;&nbsp;|&nbsp;&nbsp; styled with <a href="#">ErlGry</a></h4>
