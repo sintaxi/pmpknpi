@@ -19,16 +19,15 @@
     <div id="wrap">
       
       <div id="masthead">
-        <h1 class="domain"><%= link_to SETTINGS[:title], '/' %></h1>
+        <h1 class="domain"><%= link_to SETTINGS["title"], '/' %></h1>
       </div>
       
       <div id="main">
-        <%= catch_content :layout %>
+        <%= catch_content :for_layout %>
       </div>
       
       <div id="sbar">
-        <h1 class="brand"><a href="/articles">Admin</a></h1>
-        <%= partial "shared/admin_sbar" unless params[:controller] == 'sessions' %>
+        <%= partial "shared/admin_sbar" %>
         <%= catch_content :sidebar %>
       </div>
       

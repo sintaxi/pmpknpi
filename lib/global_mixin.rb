@@ -17,7 +17,7 @@ module GlobalMixin
   # end
 
   # def admin?
-  #   session[:password] == SETTINGS[:password]
+  #   session[:password] == SETTINGS["password"]
   # end
 
 end

@@ -8,13 +8,14 @@ class Articles < Application
   before :articles
   
   def index
-    render @articles
+    display @articles
   end
 
   def show
-    @article = Article.find_by_param(params[:id])
+    @article = Article.find_by_param(params[:id], :include => :comments)
+    raise NotFound unless @article
     @comment = Comment.new(params[:comment])
-    render @article
+    display @article
   end
   
   def new
@@ -28,31 +29,32 @@ class Articles < Application
     if @article.save
       redirect url(:article)
     else
-      render :action => :new
+      render :new
     end
   end
 
   def edit
     only_provides :html
     @article = Article.find_by_param(params[:id])
+    raise NotFound unless @article
     render
   end
 
   def update
     @article = Article.find_by_param(params[:id])
     if @article.update_attributes(params[:article])
-      redirect url(:article)
+      redirect "/articles/#{@article.to_param}"
     else
       #raise BadRequest
-      render :action => :edit
+      render :edit
     end
   end
 
   def destroy
     @article = Article.find_by_param(params[:id])
+    raise NotFound unless @article
     if @article.destroy
       redirect "/articles"
-      #redirect url(:articles)
     else
       raise BadRequest
     end
@@ -60,9 +62,9 @@ class Articles < Application
   
   private
   
-  def layout    
-    if authorized? or admin_action? 
-      self._layout = :admin 
+  def layout
+    if authorized?
+      self._layout = :admin
     else 
       self._layout = :application
     end

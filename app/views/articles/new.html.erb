@@ -1,6 +1,6 @@
-<%= error_messages_for @article %>
+<%#= error_messages_for @article %>
 
 <% form_for :article, :action => url(:articles) do %>
 	<%= partial :form %>
-	<%= submit_button 'Submit', :class => 'submit clear' %>
+	<%= submit_button 'Submit', :class => 'submit clear' %> or <%= link_to 'cancel', "/articles" %>
 <% end %>

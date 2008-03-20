@@ -1,12 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
   <head>
-    <title><%= SETTINGS[:title] %></title>
+    <title><%= SETTINGS["title"] %></title>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     <link href="/articles.rss" rel="alternate" title="RSS" type="application/rss+xml" />
     <link rel="stylesheet" href="/stylesheets/master.css" type="text/css" media="screen" charset="utf-8" />
     <link rel="stylesheet" href="/stylesheets/application.css" type="text/css" media="screen" charset="utf-8" />
-    <link rel="stylesheet" href="/stylesheets/forms.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" href="/stylesheets/forms.css" type="text/css" media="screen" charset="utf-8" />
     <link rel="stylesheet" href="/stylesheets/coderay.css" type="text/css" media="screen" charset="utf-8" />
     <script type="text/javascript" src="/javascripts/jquery-1.2.1.pack.js"></script>
     <script type="text/javascript" src="/javascripts/jquery.form.js"></script>
@@ -14,22 +14,22 @@
     <script type="text/javascript" src="/javascripts/simplevalidate.js"></script>
   </head>
   <body>
-        
     <div id="wrap">
       
       <div id="masthead">
-        <h1 class="domain"><%= link_to SETTINGS[:title], '/' %></h1>
+        <h1 class="domain"><%= link_to SETTINGS["title"], '/' %></h1>
       </div>
       
       <div id="main">
-        <%= catch_content :layout %>
+        <%= catch_content :for_layout %>
       </div>
       
+      <% unless params[:controller] == 'sessions' %>
       <div id="sbar">
-        <h1 class="brand"><a href="/articles.rss">Subscribe</a></h1>
-        <%= partial "shared/sbar" unless params[:controller] == 'sessions' %>
+        <%= partial "shared/sbar" %>
         <%= catch_content :sidebar %>
       </div>
+      <% end %>
       
       <div id="footer">
         <h4>powered by <a href="http://pmpknpi.com">PmpknPi</a> &nbsp;&nbsp;|&nbsp;&nbsp; styled with <a href="#">ErlGry</a></h4>

@@ -47,7 +47,7 @@ describe Comment do
 
 end
 
-describe Comment, "email address" do
+describe Comment, "email" do
   
   include CommentSpecHelper
   
@@ -55,32 +55,32 @@ describe Comment, "email address" do
     @comment = Comment.new
   end
   
-  it "should fail with @sonicyouth.com" do
+  it "should fail if @sonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:email => "@sonicyouth.com")
     @comment.should_not be_valid
   end
   
-  it "should fail with kim.gordon@sonicyouth" do
+  it "should fail if kim.gordon@sonicyouth" do
     @comment.attributes = valid_comment_attributes.with(:email => "kim.gordon@sonicyouth")
     @comment.should_not be_valid
   end
   
-  it "should fail with kim.gordonsonicyouth.com" do
+  it "should fail if kim.gordonsonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:email => "kim.gordonsonicyouth.com")
     @comment.should_not be_valid
   end
   
-  it "should pass with kim@sonicyouth.com" do
+  it "should pass if kim@sonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:email => "kim@sonicyouth.com")
     @comment.should be_valid
   end
   
-  it "should pass with kim+gordon@sonicyouth.com" do
+  it "should pass if kim+gordon@sonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:email => "kim+gordon@sonicyouth.com")
     @comment.should be_valid
   end
   
-  it "should pass with kim.gordon@sonicyouth.com" do
+  it "should pass if kim.gordon@sonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:email => "kim.gordon@sonicyouth.com")
     @comment.should be_valid
   end
@@ -95,23 +95,33 @@ describe Comment, "website" do
     @comment = Comment.new
   end
   
-  it "should fail with http:/sonicyouth.com" do
+  it "should fail if http:/sonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:website => "http:/sonicyouth.com")
     @comment.should_not be_valid
   end
   
-  it "should fail with http://sonicyouth" do
+  it "should fail if http://sonicyouth" do
     @comment.attributes = valid_comment_attributes.with(:website => "http://sonicyouth")
     @comment.should_not be_valid
   end
 
-  it "should fail with sonicyouth.com" do
+  it "should fail if sonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:website => "sonicyouth.com")
     @comment.should_not be_valid
   end
   
-  it "should pass with http://sonicyouth.com" do
+  it "should pass if http://www.sonicyouth.com" do
+    @comment.attributes = valid_comment_attributes.with(:website => "http://www.sonicyouth.com")
+    @comment.should be_valid
+  end
+  
+  it "should pass if http://sonicyouth.com" do
     @comment.attributes = valid_comment_attributes.with(:website => "http://sonicyouth.com")
+    @comment.should be_valid
+  end
+  
+  it "should pass if https://sonicyouth.com" do
+    @comment.attributes = valid_comment_attributes.with(:website => "https://sonicyouth.com")
     @comment.should be_valid
   end
 

@@ -13,8 +13,8 @@ describe "Articles Controller", "index action" do
     get('index')
   end
   
-  it "should be successful" do
-    @controller.should respond_to(:index)
-  end
+  # it "should be successful" do
+  #   @controller.should respond_to(:index)
+  # end
   
 end

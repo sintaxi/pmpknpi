@@ -1,13 +1,14 @@
 = Description
 
 = Dependencies
-  - merb 0.5.3
+  - merb 0.9.1
   - merb_helpers
+  - merb-more
+  - active_record
+  - merb_activerecord
   - BlueCloth
   - RedCloth
   - CodeRay
-  - active_record
-  - merb_activerecord
   
 = Installation
 
