@@ -6,12 +6,12 @@ class Sessions < Application
   
   def create
     session[:password] = params[:password]
-    if authorized?
-      redirect '/'
-      #redirect_back_or_default('/articles')
-    else
-      redirect '/'
-    end
+    redirect '/'
+    # if authorized?
+    #   redirect_back_or_default('/articles')
+    # else
+    #   redirect '/'
+    # end
   end
   
   def destroy

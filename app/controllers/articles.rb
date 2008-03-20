@@ -1,7 +1,7 @@
 class Articles < Application
   provides :xml, :js, :yaml, :rss
   
-  #before :login_required, :exclude => [:index, :show]
+  before :login_required, :exclude => [:index, :show]
   #before :basic_authentication, :exclude => [:index, :show]
   
   before :layout
@@ -62,12 +62,12 @@ class Articles < Application
   
   private
   
-  def layout    
-    #if authorized? or admin_action? 
-      #self._layout = :admin 
-    #else 
+  def layout
+    if authorized?
+      self._layout = :admin
+    else 
       self._layout = :application
-    #end
+    end
   end
   
   def admin_action?

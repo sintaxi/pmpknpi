@@ -58,6 +58,8 @@ Default Typography
 a{
 color:#24F;
 font-weight:bold;
+--xtext-decoration:none;
+--xborder-bottom:1px solid #E5CB00;
 }
 
 h1, h2, h3, h4, h5, h6{ font-family:Arial, sans-serif; }

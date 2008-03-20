@@ -9,29 +9,48 @@
   .article_list li{
   padding:4px 0;
   }
-</style>
+  .article_btn{
+  padding:8px 10px;
+  background:#f6f6f6;
+  color:#000;
+  text-decoration:none;
+  border:1px dotted #ccc;
+  }
+  li a.title{
+  font-family:Arial;
+  font-size:16px;
+  --font-weight:300;
+  text-decoration:none;
+  }
 
-<div id="published_list" class="article_list">
-  <h3>Published Articles</h3>
-  <ul>
-  <% for article in @articles %>
-    <li><%= link_to article.title, "/articles/#{article.to_param}" %> |
-    <%= link_to 'edit', "/articles/#{article.to_param}/edit" %>
-    <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %></li>
-  <% end %>
-  </ul>
-</div>
+</style>
+<h1 class="brand"><a href="/articles">Admin</a></h1>
+
+<% unless @articles.empty? %>
+  <div id="published_list" class="article_list">
+    <h3>Published Articles</h3>
+    <ul>
+    <% for article in @articles %>
+      <li><%= link_to article.title, "/articles/#{article.to_param}", :class => 'title' %><br />
+      <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
+      <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <% unless @drafts.empty? %>
   <div id="draft_list" class="article_list">
     <h3>Drafts</h3>
     <ul>
     <% for article in @drafts %>
-      <li><%= link_to article.title, "/articles/#{article.to_param}" %> |
-      <%= link_to 'edit', "/articles/#{article.to_param}/edit" %>
+      <li><%= link_to article.title, "/articles/#{article.to_param}", :class => 'title' %><br />
+      <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
       <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %></li>
     <% end %>
     </ul>
   </div>
 <% end %>
-<%= link_to 'new article', "/articles/new" %>
+<br />
+
+<%= link_to 'create new article', "/articles/new", :class => 'article_btn' %>

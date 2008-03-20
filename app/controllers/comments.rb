@@ -3,22 +3,6 @@ class Comments < Application
   
   before :article
   
-  def index
-    @comments = Comment.find(:all)
-    render @comments
-  end
-  
-  def show
-    @comment = Comment.find(params[:id])
-    render @comment
-  end
-  
-  def new
-    only_provides :html
-    @comment = Comment.new(params[:comment])
-    render
-  end
-  
   def create
     @article = Article.find_by_param(params[:article_id])
     @comment = Comment.new(params[:comment].merge(:article => @article))
@@ -26,15 +10,8 @@ class Comments < Application
     if @comment.save 
       redirect "/articles/#{@article.to_param}"
     else
-      #redirect url(:article, @article)
-      render :template => "articles/show"
+      render :template => "articles/show.html"
     end
-  end
-  
-  def edit
-    only_provides :html
-    @comment = Comment.find(params[:id])
-    render
   end
   
   def update
@@ -46,15 +23,6 @@ class Comments < Application
       redirect "/articles/#{@article.to_param}"
     else
       render
-    end
-  end
-  
-  def destroy
-    @comment = Comment.find(params[:id])
-    if @comment.destroy
-      redirect url(:comments)
-    else
-      raise BadRequest
     end
   end
 
