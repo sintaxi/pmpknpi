@@ -11,11 +11,15 @@
   <%# options = options_for_select(foo, :text_method => [][0] , :value_method => [][1], :selected => "0") %>
   <!-- <li><%#= select_control :commenting, { :collection => options, :label => 'Comments', :class => 'small'} %></li> -->
   
-  <li><% if @article.published_at.nil? && !@article.new_record? %>
-    <%= checkbox_control :draft, :label => "Save as Draft", :checked => "checked" %>
-  <% else %>
-    <%= checkbox_control :draft, :label => "Save as Draft" %>
-  <% end %></li>
+  <li><label for="article_draft">
+    <% if @article.published_at.nil? && !@article.new_record? %>
+      <%= checkbox_field :name => "article[draft]", :id => "article_draft", :value => "1", :checked => 'checked' %>
+    <% else %>
+      <%= checkbox_field :name => "article[draft]", :id => "article_draft", :value => "1" %>
+    <% end %>
+    Save as Draft
+    </label>
+  </li>
   
   <li class="small" id="publish_on"><label>Publish on</label>
   <%= datetime_control :published_at, :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 4), :order => [:month, :day, :year] %></li>

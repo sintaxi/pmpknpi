@@ -1,1 +1,3 @@
+<% puts @comment.inspect %>
+
 $("#comment_<%= @comment.id %>").replaceWith(<%= (partial "comments/comment", :with => @comment, :format => :html).to_json %>);
