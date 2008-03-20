@@ -8,11 +8,14 @@ class Application < Merb::Controller
   private
   
   def articles
-    Article.with_published do
-      @articles = Article.find :all, :order => 'published_at DESC'
-    end
-    #@articles = Article.find(:all, :order => 'published_at DESC, created_at DESC')
-    #@drafts = Article.find(:all, :conditions => "published_at IS NULL", :order => 'created_at DESC')
+    # if logged_in?
+      Article.with_published do
+        @articles = Article.find :all, :order => 'published_at DESC'
+      end
+    # else
+    #   @articles = Article.find(:all, :order => 'published_at DESC, created_at DESC')
+    #   @drafts = Article.find(:all, :conditions => "published_at IS NULL", :order => 'created_at DESC')
+    # end
   end
   
 end  

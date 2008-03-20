@@ -8,20 +8,12 @@
  </div>
  <div class="comment-main">
    <div class="comment-head">
-     <% if comment.website.blank? %>
-     <span class="name"><%= comment.name unless comment.name.nil? %></span>
-     <% else %>
-     <span class="name"><%= link_to comment.name, comment.website %></span>
-     <% end %>
+      <span class="name"><%= comment.website.blank? ? comment.name : link_to(comment.name, comment.website) %></span>
      <span id="comment_<%= comment.id %>_points"><%= pluralize(comment.mods_count, 'Point') %></span>&nbsp;
      <span class="time"><%= time_ago_in_words(comment.created_at) %> ago</span>
    </div>
    <div class="comment-body">
      <%= comment.body_html %><br />
-     <!-- <h2>ups</h2> -->
-     <%#= comment.mods_up %>
-     <!-- <h2>downs</h2> -->
-      <%#= comment.mods_down %>
    </div>
  </div>
 </div>
