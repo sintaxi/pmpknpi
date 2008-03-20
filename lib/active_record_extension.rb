@@ -1,5 +1,5 @@
 module Sintaxi
-  module FilteredLight
+  module MerbFilter
     
     def self.included(base)
       base.extend ActMethods
@@ -42,4 +42,4 @@ module Sintaxi
   end    
 end
 
-ActiveRecord::Base.send :include, Sintaxi::FilteredLight
+ActiveRecord::Base.send :include, Sintaxi::MerbFilter
