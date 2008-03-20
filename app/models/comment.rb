@@ -1,13 +1,14 @@
 class Comment < ActiveRecord::Base
   
-  belongs_to :article
+  belongs_to :article, 
+    :counter_cache => true
   
   validates_presence_of :article_id, :name, :email, :body
   
-  validates_format_of   :email,   
+  validates_format_of :email, 
     :with => /^([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})$/i
   
-  validates_format_of   :website, 
+  validates_format_of :website, 
     :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,
     :if => :website_submitted?
   
