@@ -25,12 +25,14 @@ require 'authenticated_system'
 require 'date_and_time_helpers'
 require 'global_mixin'
 require 'active_record_extension'
+require 'BlueCloth'
+require 'RedCloth'
 
 ### Dependencies
 dependencies  "rubygems",
               "coderay",
               "merb_helpers",
-              "merb-more",
+              "merb-assets",
               "merb_can_filter"
 
 ### Add your other dependencies here
