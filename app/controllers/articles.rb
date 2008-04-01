@@ -1,5 +1,5 @@
 class Articles < Application
-  provides :xml, :js, :yaml, :rss
+  provides :xml, :js, :yaml, :rss, :atom
   
   before :login_required, :exclude => [:index, :show]
   #before :basic_authentication, :exclude => [:index, :show]
