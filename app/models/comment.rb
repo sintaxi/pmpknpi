@@ -23,48 +23,59 @@ class Comment < ActiveRecord::Base
   end
   
   def mod(direction, user_info)
-    case direction
-    when "up"
-      mod_up(user_info)
-    when "down"
-      mod_down(user_info)
-    end
+    self.send("mod_#{direction}", user_info)
   end
   
-  def mods_up_array
-    @users_up_array ||= self.mods_up.split(',')
+  def up_array
+    @up_array ||= self.mods_up.split(',')
   end
   
-  def mods_down_array
-    @users_down_array ||= self.mods_down.split(',')
+  def down_array
+    @down_array ||= self.mods_down.split(',')
   end
   
   def moded_up?(user_info)
-    return (self.mods_up.nil?) ? false : mods_up_array.split(',').include?(user_info)
+    return (self.mods_up.nil?) ? false : up_array.split(',').include?(user_info)
   end
   
   def moded_down?(user_info)
-    return (self.mods_down.nil?) ? false : mods_down_array.split(',').include?(user_info)
+    return (self.mods_down.nil?) ? false : down_array.split(',').include?(user_info)
   end
   
   #these methods need to be refactored badly!
+  
+  # def mod_up(user_info)
+  #   if self.mods_up.nil?
+  #     self.mods_up = user_info
+  #   else
+  #     users = self.mods_up.split(',')
+  #     unless users.include?(user_info)
+  #       users = users.push(user_info)
+  #       self.mods_up = users.join(",")
+  #     end
+  #   end
+  #   unless self.mods_down.nil?
+  #     down_users = self.mods_down.split(",")
+  #     down_users = down_users.delete_if{|x| x == user_info}
+  #     self.mods_down = down_users.join(',')
+  #   end
+  #   self.mods_count = self.mods_up.split(',').length - self.mods_down.split(',').length
+  # end
   
   def mod_up(user_info)
     if self.mods_up.nil?
       self.mods_up = user_info
     else
-      users = self.mods_up.split(',')
-      unless users.include?(user_info)
-        users = users.push(user_info)
-        self.mods_up = users.join(",")
+      unless moded_up? user_info
+        up_array = up_array.push(user_info)
+        self.mods_up = up_array.join(",")
       end
     end
-    unless self.mods_down.nil?
-      down_users = self.mods_down.split(",")
-      down_users = down_users.delete_if{|x| x == user_info}
+    unless moded_down? user_info
+      down_array = down_array.delete_if{|x| x == user_info}
       self.mods_down = down_users.join(',')
     end
-    self.mods_count = self.mods_up.split(',').length - self.mods_down.split(',').length
+    self.mods_count = up_array.length - down_array.length
   end
   
   def mod_down(user_info)
