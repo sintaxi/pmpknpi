@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"/>
+<feed xmlns:atom="http://www.w3.org/2005/Atom">
+  
+  <title><%= SETTINGS[:title] %></title>
+  <link href="<%= SETTINGS[:domain] %>" rel="self"/>
+  <author>
+    <name>Brock Whitten (sintaxi)<name>
+    <email>brock@sintaxi.com<email>
+  </author>
+  <id><%= SETTINGS["domain"] %></id>
+  
+  <% for article in @articles %>
+    <entry>
+      <title><%= article.title %></title>
+      <id><%= article.id.to_s + "-" + article.permalink %></id>
+      <updated><%= article.published_at %></updated>
+      <link href="<%= SETTINGS['domain'] %>/articles/<%= article.permalink %>"/>
+      <summary>Short summary of your post</summary>
+      <content type="html">
+        <%= article.body_html %>
+      </content>
+    </entry>
+  <% end %>
+  
+</feed>
