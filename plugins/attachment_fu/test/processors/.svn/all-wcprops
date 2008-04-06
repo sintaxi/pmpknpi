@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/test/processors
+END
+mini_magick_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/test/processors/mini_magick_test.rb
+END
+image_science_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/test/processors/image_science_test.rb
+END
+rmagick_test.rb
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/test/processors/rmagick_test.rb
+END

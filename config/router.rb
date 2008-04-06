@@ -37,6 +37,8 @@ Merb::Router.prepare do |r|
     #article.resources :tags
   end
   
+  r.resources :assets
+  
   # This is the default route for /:controller/:action/:id
   # This is fine for most cases.  If you're heavily using resource-based
   # routes, you may want to comment/remove this line to prevent

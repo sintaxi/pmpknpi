@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 2) do
+ActiveRecord::Schema.define(:version => 3) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,24 @@ ActiveRecord::Schema.define(:version => 2) do
 
   add_index "articles", ["published_at"], :name => "index_articles_on_published_at"
   add_index "articles", ["permalink"], :name => "index_articles_on_permalink"
+
+  create_table "assets", :force => true do |t|
+    t.string   "filename"
+    t.integer  "width"
+    t.integer  "height"
+    t.string   "content_type"
+    t.integer  "size"
+    t.string   "attachable_type"
+    t.integer  "attachable_id"
+    t.datetime "updated_at"
+    t.datetime "created_at"
+    t.string   "thumbnail"
+    t.integer  "parent_id"
+  end
+
+  add_index "assets", ["parent_id"], :name => "index_assets_on_parent_id"
+  add_index "assets", ["attachable_id"], :name => "index_assets_on_attachable_id"
+  add_index "assets", ["attachable_type"], :name => "index_assets_on_attachable_type"
 
   create_table "comments", :force => true do |t|
     t.integer  "article_id"
