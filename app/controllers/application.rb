@@ -8,10 +8,14 @@ class Application < Merb::Controller
   private
   
   def articles
-    Article.with_published do
+    if logged_in?
       @articles = Article.find :all, :order => 'published_at DESC'
+      @assets = Asset.find :all, :conditions => "parent_id IS NULL", :order => "created_at DESC"
+    else
+      Article.with_published do
+        @articles = Article.find :all, :order => 'published_at DESC'
+      end
     end
-    @drafts = Article.find(:all, :conditions => "published_at IS NULL", :order => 'created_at DESC') if logged_in?
   end
   
 end

@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/test/fixtures/files
+END
+foo.txt
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/test/fixtures/files/foo.txt
+END
+rails.png
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/test/fixtures/files/rails.png
+END

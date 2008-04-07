@@ -1,3 +1,6 @@
+
+
+
 # Make the app's "gems" directory a place where gems are loaded from
 Gem.clear_paths
 Gem.path.unshift(Merb.root / "gems")
@@ -44,6 +47,25 @@ dependencies  "rubygems",
 # dependency "RedCloth", "> 3.0"
 # OR
 # dependencies "RedCloth" => "> 3.0", "ruby-aes-cext" => "= 1.0"
+
+Merb::BootLoader.before_app_loads do
+  if defined?(Merb::Plugins)
+    puts "Loading Rails plugins from plugins/"
+    Dir["#{Merb.root}/plugins/*"].each do |dir|
+      plugin_init = dir / 'init.rb'
+       plugin_lib  = dir / 'lib' 
+
+       if File.directory?(plugin_lib) 
+         if defined?(ActiveSupport) 
+           Dependencies.load_paths << plugin_lib 
+           Dependencies.load_once_paths << plugin_lib 
+        end
+        $LOAD_PATH << plugin_lib
+      end
+      require plugin_init if File.exist?(plugin_init)
+    end
+  end
+end
 
 Merb::BootLoader.after_app_loads do
   ### Add dependencies here that must load after the application loads:
