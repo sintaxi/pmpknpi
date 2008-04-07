@@ -1,3 +1,52 @@
-<h1>Assets controller, show action</h1>
+<img src="<%#= @asset.public_filename %>" />
+<img src="<%= @asset.public_filename :large %>" />
+<img src="<%= @asset.public_filename :med %>" />
+<img src="<%= @asset.public_filename :small %>" />
+<img src="<%= @asset.public_filename :thumb %>" />
+<img src="<%= @asset.public_filename :tiny %>" />
+<img src="<%= @asset.public_filename :micro %>" />
 
-<p>Edit this file in <tt>app/views/assets/show.html.erb</tt></p>
+<p>
+  <b>Filename:</b>
+  <%=h @asset.filename %>
+</p>
+
+<p>
+  <b>Width:</b>
+  <%=h @asset.width %>
+</p>
+
+<p>
+  <b>Height:</b>
+  <%=h @asset.height %>
+</p>
+
+<p>
+  <b>Content type:</b>
+  <%=h @asset.content_type %>
+</p>
+
+<p>
+  <b>Size:</b>
+  <%=h @asset.size %>
+</p>
+
+<p>
+  <b>Attachable type:</b>
+  <%=h @asset.attachable_type %>
+</p>
+
+<p>
+  <b>Attachable:</b>
+  <%=h @asset.attachable_id %>
+</p>
+
+<p>
+  <b>Updated at:</b>
+  <%=h @asset.updated_at %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%=h @asset.created_at %>
+</p>

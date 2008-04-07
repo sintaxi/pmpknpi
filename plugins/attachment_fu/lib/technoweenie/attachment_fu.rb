@@ -255,15 +255,30 @@ module Technoweenie # :nodoc:
       #   @attachment = Attachment.create! params[:attachment]
       #
       # TODO: Allow it to work with Merb tempfiles too.
+
+      # def uploaded_data=(file_data)
+      #   return nil if file_data.nil? || file_data.size == 0 
+      #   self.content_type = file_data.content_type
+      #   self.filename     = file_data.original_filename if respond_to?(:filename)
+      #   if file_data.is_a?(StringIO)
+      #     file_data.rewind
+      #     self.temp_data = file_data.read
+      #   else
+      #     self.temp_path = file_data.path
+      #   end
+      # end
+      
       def uploaded_data=(file_data)
-        return nil if file_data.nil? || file_data.size == 0 
-        self.content_type = file_data.content_type
-        self.filename     = file_data.original_filename if respond_to?(:filename)
-        if file_data.is_a?(StringIO)
-          file_data.rewind
-          self.temp_data = file_data.read
+
+        return nil if file_data.nil? || file_data["size"] == 0 
+        self.content_type = file_data["content_type"]
+        self.filename     = file_data["filename"] if respond_to?(:filename)
+        data = file_data["tempfile"]
+        if data.is_a?(StringIO)
+          data.rewind
+          self.temp_data = data.read
         else
-          self.temp_path = file_data.path
+          self.temp_path = data.path
         end
       end
 

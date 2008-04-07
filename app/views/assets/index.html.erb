@@ -1,3 +1,63 @@
-<h1>Assets controller, index action</h1>
+<style type="text/css" media="screen">
+  
+  #asset_form{
+  padding:15px 30px 30px 30px;
+  background:#eee;
+  }
+  #images ul{
+  list-style-type:none;
+  padding:0;
+  margin:0;
+  }
+  #images li{
+  float:left;
+  margin:5px;
+  padding:0;
+  }
+  #images a img{
+  border:1px solid #aaa;
+  padding:4px;
+  display:block;
+  }
+  #images a img:hover{
+  border-color:blue;
+  }
+  li.asset{
+    position:relative;
+  }
+  .asset_panel{
+  position:absolute;
+  bottom:5px;
+  right:5px;
+  background:#fff;
+  font-size:10px;
+  padding-top:3px;
+  padding-left:5px;
+  }
+  .asset_panel a{
+  font-weight:300;
+  text-decoration:none;
+  }
+  a.del{
+  color:red;
+  }
+</style>
 
-<p>Edit this file in <tt>app/views/assets/index.html.erb</tt></p>
+<% form_for :asset, :action => url(:assets), :multipart => true do %>
+	<%= file_control :uploaded_data, :label => "Upload Asset" %>
+	<input name="commit" type="submit" value="Upload" />
+<% end %>
+
+  
+<div id="images">
+  <ul>
+    <% for asset in @assets %>
+    <li class="asset">
+      <a href="/assets/<%= asset.id %>"><img src="<%= asset.public_filename :med %>" /></a>
+      <div class="asset_panel">
+        <a href="/assets/<%= asset.id %>" class="del delete">del</a>
+      </div>
+    </li>
+    <% end %>
+  </ul>
+</div>

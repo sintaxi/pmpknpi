@@ -1,13 +1,17 @@
 class Assets < Application
-  # provides :xml, :yaml, :js
+  provides :xml, :yaml, :js
+  
+  before :login_required
+  before :layout
   
   def index
-    @assets = Asset.find(:all)
+    @assets = Asset.find :all, :conditions => "parent_id IS NULL", :order => "created_at DESC"
+    @asset = Asset.new(params[:asset])
     display @assets
   end
 
   def show
-    @asset = Asset.find_by_id(params[:id])
+    @asset = Asset.find(params[:id])
     raise NotFound unless @asset
     display @asset
   end
@@ -21,7 +25,7 @@ class Assets < Application
   def create
     @asset = Asset.new(params[:asset])
     if @asset.save
-      redirect url(:asset, @asset)
+      redirect url(:assets)
     else
       render :new
     end
@@ -52,6 +56,12 @@ class Assets < Application
     else
       raise BadRequest
     end
+  end
+  
+  private
+  
+  def layout
+    self._layout = :admin
   end
   
 end

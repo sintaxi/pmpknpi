@@ -31,13 +31,12 @@ Merb::Router.prepare do |r|
   # moding comments
   r.match("/articles/:article_id/comments/:id/:mod").to(:controller => "comments", :action => "update")
   
-  # REGULAR RESOURCES
-  r.resources :articles, :collection => {:admin => :get} do |article|
-    article.resources :comments, :member => { :mod_up => :get, :mod_down => :get }
-    #article.resources :tags
-  end
-  
+  # RESOURCES
+  r.resources :sessions
   r.resources :assets
+  r.resources :articles do |article|
+    article.resources :comments, :member => { :mod_up => :get, :mod_down => :get }
+  end
   
   # This is the default route for /:controller/:action/:id
   # This is fine for most cases.  If you're heavily using resource-based

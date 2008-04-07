@@ -1,3 +1,4 @@
-<h1>Assets controller, new action</h1>
-
-<p>Edit this file in <tt>app/views/assets/new.html.erb</tt></p>
+<% form_for :asset, :action => url(:assets), :multipart => true do %>
+	<%= file_control :uploaded_data, :label => "With Helpers" %>
+	<input name="commit" type="submit" value="Upload" />
+<% end %>
