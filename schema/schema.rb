@@ -49,13 +49,16 @@ ActiveRecord::Schema.define(:version => 3) do
 
   create_table "comments", :force => true do |t|
     t.integer  "article_id"
-    t.string   "author"
+    t.string   "user_ip"
+    t.string   "user_agent"
+    t.string   "referrer"
+    t.boolean  "approved",   :default => false
     t.string   "name"
     t.string   "email"
     t.string   "website"
-    t.text     "mods_up",    :default => ""
-    t.text     "mods_down",  :default => ""
-    t.integer  "mods_count", :default => 1
+    t.text     "yay",        :default => ""
+    t.text     "nay",        :default => ""
+    t.integer  "vote_count", :default => 1
     t.text     "body"
     t.text     "body_html"
     t.datetime "created_at"

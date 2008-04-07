@@ -1,15 +1,15 @@
-<% upclass = (comment.mods_up.split(',').include?(viewer_data) ? 'modedup' : 'uparrow')
-   downclass = (comment.mods_down.split(',').include?(viewer_data) ? 'modeddown' : 'downarrow') %>
+<% upclass = (comment.yay_array.include?(viewer_data) ? 'modedup' : 'uparrow')
+   downclass = (comment.nay_array.include?(viewer_data) ? 'modeddown' : 'downarrow') %>
 
 <div class="comment" id="comment_<%= comment.id %>">
  <div class="arrows">
-   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/up" class="<%= upclass %> remote" id="arrowup_<%= comment.id %>"></a></span>
-   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/down" class="<%= downclass %> remote" id="arrowdown_<%= comment.id %>"></a></span>
+   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/yay" class="<%= upclass %> remote" id="arrowup_<%= comment.id %>"></a></span>
+   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/nay" class="<%= downclass %> remote" id="arrowdown_<%= comment.id %>"></a></span>
  </div>
  <div class="comment-main">
    <div class="comment-head">
       <span class="name"><%= comment.website.blank? ? comment.name : link_to(comment.name, comment.website) %></span>
-     <span id="comment_<%= comment.id %>_points"><%= pluralize(comment.mods_count, 'Point') %></span>&nbsp;
+     <span id="comment_<%= comment.id %>_points"><%= pluralize(comment.vote_count, 'Point') %></span>&nbsp;
      <span class="time"><%= time_ago_in_words(comment.created_at) %> ago</span>
    </div>
    <div class="comment-body">

@@ -6,7 +6,8 @@ class Comments < Application
   def create
     @article = Article.find_by_param(params[:article_id])
     @comment = Comment.new(params[:comment].merge(:article => @article))
-    @comment.author = @comment.mods_up = viewer_data
+    @comment.request = request
+    @comment.yay = @comment.user_data
     if @comment.save 
       redirect "/articles/#{@article.to_param}"
     else
@@ -17,7 +18,7 @@ class Comments < Application
   def update
     @article = Article.find_by_param(params[:article_id])
     @comment = Comment.find(params[:id])
-    @comment.mod(params[:mod], viewer_data)
+    @comment.vote(params[:vote], viewer_data)
     @saved = @comment.save
     if content_type == :html
       redirect "/articles/#{@article.to_param}"

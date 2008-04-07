@@ -18,71 +18,54 @@ class Comment < ActiveRecord::Base
     "Textile"
   end
   
+  def request=(request)
+    self.user_ip    = request.remote_ip
+    self.user_agent = request.env['HTTP_USER_AGENT']
+    self.referrer   = request.env['HTTP_REFERER']
+  end
+  
   def website_submitted?
     !self.website.blank?
   end
   
-  def mod(direction, user_info)
-    case direction
-    when "up"
-      mod_up(user_info)
-    when "down"
-      mod_down(user_info)
-    end
+  def user_data
+    @user_data ||= "#{user_ip}--#{user_agent.gsub(',', ';')}"
   end
   
-  def mods_up_array
-    @users_up_array ||= self.mods_up.split(',')
+  def yay_array
+    @yay_array ||= self.yay.split(',')
   end
   
-  def mods_down_array
-    @users_down_array ||= self.mods_down.split(',')
+  def nay_array
+    @nay_array ||= self.nay.split(',')
   end
   
-  def moded_up?(user_info)
-    return (self.mods_up.nil?) ? false : mods_up_array.split(',').include?(user_info)
+  def voted_yay?(user = self.user_data)
+    yay_array.include?(user)
   end
   
-  def moded_down?(user_info)
-    return (self.mods_down.nil?) ? false : mods_down_array.split(',').include?(user_info)
+  def voted_nay?(user = self.user_data)
+    nay_array.include?(user)
   end
   
-  #these methods need to be refactored badly!
-  
-  def mod_up(user_info)
-    if self.mods_up.nil?
-      self.mods_up = user_info
-    else
-      users = self.mods_up.split(',')
-      unless users.include?(user_info)
-        users = users.push(user_info)
-        self.mods_up = users.join(",")
-      end
-    end
-    unless self.mods_down.nil?
-      down_users = self.mods_down.split(",")
-      down_users = down_users.delete_if{|x| x == user_info}
-      self.mods_down = down_users.join(',')
-    end
-    self.mods_count = self.mods_up.split(',').length - self.mods_down.split(',').length
+  def calculate_votes
+    self.vote_count = yay_array.length - nay_array.length
   end
   
-  def mod_down(user_info)
-    if self.mods_down.nil?
-      self.mods_down = user_info
-    else
-      users = self.mods_down.split(',')
-      unless users.include?(user_info)
-        users = users.push(user_info)
-        self.mods_down = users.join(",")
-      end
-    end
-    unless self.mods_up.nil?
-      up_users = self.mods_up.split(',')
-      up_users = up_users.delete_if{|x| x == user_info}
-      self.mods_up = up_users.join(",")
-    end
-    self.mods_count = self.mods_up.split(',').length - self.mods_down.split(',').length
+  def vote(direction, user_data)
+    self.send("vote_#{direction}", user_data)
+  end
+  
+  def vote_yay(voter_data)
+    self.yay = yay_array.push(voter_data).join(",") unless voted_yay?(voter_data)
+    self.nay = nay_array.delete_if{|x| x == voter_data}.join(",")
+    calculate_votes
+  end
+  
+  def vote_nay(voter_data)
+    self.nay = nay_array.push(voter_data).join(",") unless voted_nay?(voter_data)
+    self.yay = yay_array.delete_if{|x| x == voter_data}.join(",")
+    calculate_votes
   end
   
 end
