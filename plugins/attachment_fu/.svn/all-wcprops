@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu
+END
+Rakefile
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/Rakefile
+END
+init.rb
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/init.rb
+END
+CHANGELOG
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/CHANGELOG
+END
+amazon_s3.yml.tpl
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/amazon_s3.yml.tpl
+END
+install.rb
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/install.rb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/projects/!svn/ver/85/famkin/trunk/vendor/plugins/attachment_fu/README
+END

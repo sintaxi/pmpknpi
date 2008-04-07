@@ -1,0 +1,34 @@
+8
+
+dir
+188
+https://208.75.87.221/svn/projects/famkin/trunk/vendor/plugins/attachment_fu/lib/technoweenie/attachment_fu
+https://208.75.87.221/svn/projects
+
+
+
+2007-09-18T03:26:54.138062Z
+85
+creston
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+80a48434-09ae-11dc-8267-f8cb0b6053d8
+
+processors
+dir
+
+backends
+dir
+
