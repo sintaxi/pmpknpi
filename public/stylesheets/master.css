@@ -61,6 +61,7 @@ font-weight:bold;
 --xtext-decoration:none;
 --xborder-bottom:1px solid #E5CB00;
 }
+a img{border:none;}
 
 h1, h2, h3, h4, h5, h6{ font-family:Arial, sans-serif; }
 
@@ -166,14 +167,20 @@ margin-bottom:30px;
 padding-top:10px;
 }
 .article .meta{
+clear:both;
 margin:0;
---background:#f6f6f6;
 padding:7px 5px 5px;
 border-bottom:1px dotted #ccc;
 }
 .article .meta h3{
 margin:0;
 padding:0;
+}
+.article .left{
+margin-right:10px;
+}
+.article .right{
+margin-left:10px;
 }
 
 
