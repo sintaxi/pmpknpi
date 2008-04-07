@@ -1,0 +1,106 @@
+8
+
+dir
+188
+https://208.75.87.221/svn/projects/famkin/trunk/vendor/plugins/attachment_fu
+https://208.75.87.221/svn/projects
+
+
+
+2007-09-18T03:26:54.138062Z
+85
+creston
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+80a48434-09ae-11dc-8267-f8cb0b6053d8
+
+test
+dir
+
+Rakefile
+file
+
+
+
+
+2008-01-08T04:14:57.000000Z
+68b46bbdc65a11adcda8d45f2fb01610
+2007-09-18T03:26:54.138062Z
+85
+creston
+
+init.rb
+file
+
+
+
+
+2008-01-08T04:14:57.000000Z
+449f7c7d4c594301e17cc4f188cba27e
+2007-09-18T03:26:54.138062Z
+85
+creston
+
+lib
+dir
+
+CHANGELOG
+file
+
+
+
+
+2008-01-08T04:14:57.000000Z
+3511b70b3dd43c20b45ab31115716702
+2007-09-18T03:26:54.138062Z
+85
+creston
+
+amazon_s3.yml.tpl
+file
+
+
+
+
+2008-01-08T04:14:57.000000Z
+40f0a95f307968db9f1f17a1f6e1a88b
+2007-09-18T03:26:54.138062Z
+85
+creston
+
+install.rb
+file
+
+
+
+
+2008-01-08T04:14:57.000000Z
+afc122a879278a1bfe5df9634907d0a4
+2007-09-18T03:26:54.138062Z
+85
+creston
+
+README
+file
+
+
+
+
+2008-01-08T04:14:57.000000Z
+807515841667e35469c7e83588ebd8a4
+2007-09-18T03:26:54.138062Z
+85
+creston
+
