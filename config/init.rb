@@ -68,6 +68,8 @@ Merb::BootLoader.before_app_loads do
 end
 
 Merb::BootLoader.after_app_loads do
+  #ActiveRecord::Base.default_timezone = :utc
+  
   ### Add dependencies here that must load after the application loads:
   # dependency "magic_admin" # this gem uses the app's model classes
 end
