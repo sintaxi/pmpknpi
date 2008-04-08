@@ -10,6 +10,7 @@ class Article < ActiveRecord::Base
   # CALLBACKS
   before_save :create_permalink
   before_save :draft_check
+  #after_validation :convert_to_utc
   
   # PLUGINS
   merb_can_filter :body, :excerpt
@@ -32,7 +33,10 @@ class Article < ActiveRecord::Base
     end
   end
   
-  # BEFORES
+  def convert_to_utc
+    self.published_at = published_at.utc if published_at
+  end
+  
   def create_permalink
     self.permalink = self.title.gsub(/\W+/, ' ').strip.downcase.gsub(/\ +/, '-') if permalink.blank?
   end

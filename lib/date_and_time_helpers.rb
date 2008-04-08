@@ -171,7 +171,7 @@ module Merb
         defaults = { :discard_type => true }
         attrs    = defaults.merge(attrs)
         datetime = @_obj.send(col)
-        datetime ||= Time.now
+        datetime ||= attrs[:datetime] ||= Time.now
         position = { :year => 1, :month => 2, :day => 3, :hour => 4, :minute => 5, :second => 6 }
         order = (attrs[:order] ||= [:year, :month, :day])
 
