@@ -19,8 +19,9 @@
   - RedCloth
   - CodeRay
   - merb\_can\_filter
+  - image_science
   
-### Get Started - clone/cofigure/migrate
+### Get Started - clone,configure,migrate
     
     git clone git://github.com/sintaxi/pmpknpi.git
     cd pmpknpi

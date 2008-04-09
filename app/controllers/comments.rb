@@ -1,7 +1,14 @@
 class Comments < Application
   provides :xml, :js, :yaml
   
+  before :layout
   before :article
+  
+  
+  def index
+    @comments = Comment.find(:all, :include => :article)
+    render
+  end
   
   def create
     @article = Article.find_by_param(params[:article_id])
@@ -25,6 +32,12 @@ class Comments < Application
     else
       render
     end
+  end
+  
+  private
+  
+  def layout
+    self._layout = :admin
   end
 
 end

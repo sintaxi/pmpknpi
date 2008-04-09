@@ -12,6 +12,7 @@ Merb::Router.prepare do |r|
   # Resources
   r.resources :sessions
   r.resources :assets
+  r.resources :comments
   r.resources :articles do |article|
     article.resources :comments
   end

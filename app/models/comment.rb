@@ -1,6 +1,6 @@
 class Comment < ActiveRecord::Base
   
-  belongs_to :article, 
+  belongs_to :article,
     :counter_cache => true
   
   validates_presence_of :article_id, :name, :email, :body

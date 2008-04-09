@@ -20,8 +20,8 @@
   }
   
   #asset_list li{
-   float:left;
-   padding-right:4px; 
+  float:left;
+  padding-right:4px; 
   }
   .btn{
   clear:both;
@@ -32,9 +32,9 @@
   }
 </style>
 
-<% unless @articles.empty? %>
-  <div id="article_list">
-    <h3>Articles - <%= link_to 'new', "/articles/new", :class => 'btn' %></h3>
+<div id="article_list">
+  <h3>Articles(<%= @articles.length %>) - <%= link_to 'new', "/articles/new", :class => 'btn' %></h3>
+  <% unless @articles.empty? %>
     <ul>
     <% for article in @articles %>
       <li><%= '<span class="draft">draft - </span>' unless article.published_at %><%= link_to article.title, "/articles/#{article.to_param}", :class => 'title' %> -
@@ -42,16 +42,17 @@
       <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %></li>
     <% end %>
     </ul>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
-<% unless @assets.empty? %>
-  <div id="asset_list">
-    <h3>Assets - <%= link_to 'manage', "/assets", :class => 'btn' %></h3>
+
+<div id="asset_list">
+  <h3>Assets(<%= @assets.length %>) - <%= link_to 'manage', "/assets", :class => 'btn' %></h3>
+  <% unless @assets.empty? %>
     <ul>
     <% for asset in @assets %>
       <li><a href="<%= asset.public_filename %>" title="<%= asset.filename %>"><img src="<%= asset.public_filename :thumb %>"></img></a></li>
     <% end %>
     </ul>
-  </div>
-<% end %>
+  <% end %>
+</div>

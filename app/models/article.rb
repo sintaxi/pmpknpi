@@ -2,7 +2,7 @@ class Article < ActiveRecord::Base
   include GlobalMixin
   
   # ASSOCIATIONS
-  has_many :comments
+  has_many :comments, :dependent => :destroy
   
   # VALIDATIONS
   validates_presence_of :title
@@ -30,7 +30,7 @@ class Article < ActiveRecord::Base
     end
     
     def with_published(&block)
-      with_scope({:find => { :conditions => ['published_at <= ? AND published_at IS NOT NULL', Time.now] } }, &block)
+      with_scope({:find => { :conditions => ['published_at <= ? AND published_at IS NOT NULL', Time.now.utc] } }, &block)
     end
   end
   

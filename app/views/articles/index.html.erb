@@ -12,15 +12,16 @@
       <div class="body">
         <%= article.excerpt_html.blank? ? article.body_html : article.excerpt_html %>
       </div>
-      <div class="meta">
-        <h3><%= article.comments_count %> Comments</h3>
-      </div>
+      
+      <h2 style="text-align:center;color:#ddd;margin:20px">– § –</h2>
+      
     </div>
   <% end %>
   
 <% elsif !logged_in? %>
-  <h2>Congratulations! you have a blog</h2>
-  <p>To get started login at <a href="/articles/new"><%= SETTINGS["domain"] %>/admin</a>. Your password is <strong>'<%= SETTINGS["password"] %>'</strong>. This can be changed in your config/settings.yml file.</p>
+  <h2>Congratulations! you have a blog!</h2>
+  <h3>You may now <a href="/articles/new">Login</a></h3>
+  <p>*Your password is located in the <strong>config/settings.yml</strong> file. you can change/view it there.</p>
 <% else %>
   <h2>Success! time to start publishing.</h2>
 <% end %>
