@@ -6,6 +6,7 @@ defaults: &defaults
   author: "Brock Whitten"
   password: "foobar"
   filter: "Markdown"
+  timezone_offset: -7
 
 development:
   <<: *defaults

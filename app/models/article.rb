@@ -1,4 +1,5 @@
 class Article < ActiveRecord::Base
+  include GlobalMixin
   
   # ASSOCIATIONS
   has_many :comments
@@ -10,7 +11,7 @@ class Article < ActiveRecord::Base
   # CALLBACKS
   before_save :create_permalink
   before_save :draft_check
-  #after_validation :convert_to_utc
+  after_validation :convert_to_utc
   
   # PLUGINS
   merb_can_filter :body, :excerpt
@@ -34,7 +35,7 @@ class Article < ActiveRecord::Base
   end
   
   def convert_to_utc
-    self.published_at = published_at.utc if published_at
+    self.published_at = local_to_utc(published_at) if published_at
   end
   
   def create_permalink

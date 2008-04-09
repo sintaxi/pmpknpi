@@ -22,5 +22,5 @@
   </li>
   
   <li class="small" id="publish_on"><label>Publish on</label>
-  <%= datetime_control :published_at, :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 4), :order => [:month, :day, :year] %></li>
+  <%= datetime_control :published_at, :datetime => utc_to_local(Time.now.utc), :start_year => (@article.published_at || Time.now.utc).year-1, :end_year => (Time.now.utc.year + 4), :order => [:month, :day, :year] %></li>
 </ul>

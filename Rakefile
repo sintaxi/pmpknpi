@@ -27,3 +27,11 @@ end
 ##############################################################################
 # ADD YOUR CUSTOM TASKS BELOW
 ##############################################################################
+
+desc "calculate timezoze offset"
+task :timezone_offset do
+  offset = Time.now.hour - Time.now.utc.hour
+  puts "calculating offset...\n\n"
+  puts "  * Your timezone is #{offset} hours off UTC"
+  puts "  * In config/settings.yml set 'timezone_offset: #{offset}'\n\n"
+end
