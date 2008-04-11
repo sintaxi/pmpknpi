@@ -1,29 +1,29 @@
 class Article < ActiveRecord::Base
   include GlobalMixin
   
-  # ASSOCIATIONS
+  # Assosiations
   has_many :comments, :dependent => :destroy
   
-  # VALIDATIONS
+  # Validations
   validates_presence_of :title
   validates_uniqueness_of :title
   
-  # CALLBACKS
+  # Callbacks
   before_save :create_permalink
   before_save :draft_check
   after_validation :convert_to_utc
   
-  # PLUGINS
+  # Plugins
   merb_can_filter :body, :excerpt
   
-  # ACCESSORS
+  # Accessors
   attr_accessor :draft
   
   def to_param
     permalink
   end
   
-  # FINDS
+  # Queries
   class << self
     def find_by_param(*args)
       find_by_permalink *args
@@ -34,6 +34,7 @@ class Article < ActiveRecord::Base
     end
   end
   
+  # Callback Methods
   def convert_to_utc
     self.published_at = local_to_utc(published_at) if published_at
   end

@@ -48,6 +48,7 @@
 	<input name="commit" type="submit" value="Upload" />
 <% end %>
 
+<%= "<h2>You have no assets :(</h2>" if @assets.empty? %>
   
 <div id="images">
   <ul>

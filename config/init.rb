@@ -24,6 +24,7 @@ require 'date_and_time_helpers'
 require 'global_mixin'
 require 'BlueCloth'
 require 'RedCloth'
+require 'whistler'
 
 ### Dependencies
 dependencies  "rubygems",

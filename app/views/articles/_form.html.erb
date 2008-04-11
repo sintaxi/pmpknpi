@@ -1,7 +1,7 @@
 <ul>
   <li><%= text_control :title, :label => 'Title ' %></li>
   <li class="article_excerpt" <%= 'style="display:none"' if @article.excerpt.blank? %>><%= text_area_control :excerpt, :label => 'Excerpt <a href="#" class="excerpt_toggle">Hide</a>', :id => 'article_excerpt', :class => "short" %></li>
-  <li><%= text_area_control :body, :label => 'Body <a href="#" class="excerpt_toggle">Add Except</a> ', :id => 'article_body' %></li>
+  <li><%= text_area_control :body, :label => 'Body <a href="#" class="excerpt_toggle">Add Excerpt</a> ', :id => 'article_body' %></li>
   <li><%= text_control :permalink, :label => 'Permalink ', :id => 'article_permalink', :class => 'small' unless @article.new_record? %></li>
   
   <% filter = @article.new_record? ? SETTINGS["filter"] : @article.filter %>
