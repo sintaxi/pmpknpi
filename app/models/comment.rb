@@ -19,14 +19,14 @@ class Comment < ActiveRecord::Base
   
   # Plugins
   # merb_can_filter :body << need to add whistler support to merb_can_filter
+  #
+  # Attributes
+  # def filter
+  #   "Textile"
+  # end
   
   def filter_body
     write_attribute(:body_html, RedCloth.new(Whistler.white_list(body)).to_html  )
-  end
-  
-  # Attributes
-  def filter
-    "Textile"
   end
   
   def request=(request)

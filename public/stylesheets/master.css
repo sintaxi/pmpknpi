@@ -1,4 +1,3 @@
-
 body{
 font-family: Verdana, Arial, sans-serif;
 font-size:72%;
@@ -6,7 +5,6 @@ margin:0;
 padding:0;
 }
 :focus{ outline:0; }
-
 #wrap{
 padding:60px 50px 60px 60px;
 min-width:700px;
@@ -14,7 +12,6 @@ min-width:700px;
 #masthead{
 border-bottom:1px dotted #ccc;
 margin-bottom:10px;
---background:#000;
 }
 #main{
 width:66%;
@@ -51,7 +48,6 @@ helpers
 .left{float:left}
 .right{float:right}
 
-
 /*-----------------------------------
 image classes
 -----------------------------------*/
@@ -77,12 +73,9 @@ Default Typography
 a{
 color:#24F;
 font-weight:bold;
---xtext-decoration:none;
---xborder-bottom:1px solid #E5CB00;
 }
 a img{border:none;}
-
-h1, h2, h3, h4, h5, h6{ font-family:Arial, sans-serif; }
+h1, h2, h3, h4, h5, h6{ font-family:Helvetica, Arial, sans-serif; }
 
 h1{ 
 font-size:3.8em;
@@ -137,17 +130,14 @@ margin:0px 0px -.1em;
 
 }
 h1.title a{
---xbackground:#D4D4D4;
 color:#000;
 text-decoration:none;
 }
 h1.title a:hover{
---background:#FFA;
 text-decoration:underline;
 }
 
 /* body */
-
 .body p, .body li{
 line-height:170%;
 }
@@ -216,6 +206,12 @@ padding-top:3px;
 margin:15px 0;
 border-bottom:1px dotted #ccc;
 }
+
+.comment p{
+line-height:170%;
+padding-top 4px;
+color:#111;
+}
 div.arrows{
 float:left;
 height:31px;
@@ -250,6 +246,10 @@ padding:0;
 font-weight:bold;
 color:#034;
 }
+.comment.admin .name,
+.comment.admin .name a{ 
+  color:#c00;
+}
 .comment .points{
 color:#888;
 }
@@ -283,10 +283,6 @@ padding:0;
 .submittal_failed ul{
 margin:5px;
 }
-.submittal_failed li{
---font-weight:bold;
-}
-
 .comment_errors .submittal_failed{
 background: lightyellow;
 border-color:#cc9500;
