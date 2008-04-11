@@ -30,7 +30,7 @@ class Comments < Application
     if content_type == :html
       redirect "/articles/#{@article.to_param}"
     else
-      render :layout => false
+      display :layout => false
     end
   end
   
