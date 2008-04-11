@@ -17,8 +17,12 @@ $(document).ready(function() {
      
      //RESTful delete
      if ($(event.target).is('a.delete')) {
-       $('<form method="POST" style="display:none"></form>').attr('action', event.target.href ).html('<input type="hidden" name="_method" value="delete" />').appendTo("body")[0].submit();
-       return false;
+       if (confirm("Oops! Do you really mean to delete?")) {
+         $('<form method="POST" style="display:none"></form>').attr('action', event.target.href ).html('<input type="hidden" name="_method" value="delete" />').appendTo("body")[0].submit();
+         return false;
+       }else{
+         return false;
+       }
      }
    
   });

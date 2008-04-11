@@ -8,12 +8,10 @@ class AssetMigration < ActiveRecord::Migration
       t.column :size,               :integer
       t.column :attachable_type,    :string
       t.column :attachable_id,      :integer
-      t.column :updated_at,         :datetime
-      t.column :created_at,         :datetime
       t.column :thumbnail,          :string
       t.column :parent_id,          :integer
+      t.timestamps
     end
-    
     add_index :assets, :attachable_type
     add_index :assets, :attachable_id
     add_index :assets, :parent_id
