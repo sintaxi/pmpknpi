@@ -1,8 +1,10 @@
 class Comment < ActiveRecord::Base
   
+  # Assosiations
   belongs_to :article,
     :counter_cache => true
   
+  # Validations
   validates_presence_of :article_id, :name, :email, :body
   
   validates_format_of :email, 
@@ -12,8 +14,17 @@ class Comment < ActiveRecord::Base
     :with => /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$/ix,
     :if => :website_submitted?
   
-  merb_can_filter :body
+  # Callbacks
+  before_save :filter_body
   
+  # Plugins
+  # merb_can_filter :body << need to add whistler support to merb_can_filter
+  
+  def filter_body
+    write_attribute(:body_html, RedCloth.new(Whistler.white_list(body)).to_html  )
+  end
+  
+  # Attributes
   def filter
     "Textile"
   end
@@ -28,6 +39,7 @@ class Comment < ActiveRecord::Base
     !self.website.blank?
   end
   
+  # Voting System (will be a gem some day)
   def user_data
     @user_data ||= "#{user_ip}--#{user_agent.gsub(',', ';')}"
   end

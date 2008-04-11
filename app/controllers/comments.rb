@@ -1,9 +1,8 @@
 class Comments < Application
   provides :xml, :js, :yaml
   
-  before :layout
-  before :article
-  
+  before :login_required
+  before :layout, :exclude => :update
   
   def index
     @comments = Comment.find(:all, :include => :article)
@@ -37,7 +36,11 @@ class Comments < Application
   private
   
   def layout
-    self._layout = :admin
+    if authorized?
+      self._layout = :admin
+    else 
+      self._layout = :application
+    end
   end
 
 end
