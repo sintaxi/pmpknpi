@@ -51,6 +51,25 @@ helpers
 .left{float:left}
 .right{float:right}
 
+
+/*-----------------------------------
+image classes
+-----------------------------------*/
+.center{
+text-align:center;
+}
+img.border{
+padding:5px; 
+border:1px solid #ccc;
+}
+img.matte{
+padding:10px 10px 11px;
+background:#eee;
+}
+img.left{margin:10px 20px 10px 0;}
+img.right{margin:10px 0 10px 20px;}
+img.cneter{margin-left:10px;}
+
 /*-----------------------------------
 Default Typography
 -----------------------------------*/
@@ -71,7 +90,7 @@ letter-spacing:-.06em;
 }
 
 h2{
-margin-top:28px;
+margin-top:22px;
 margin-bottom:-.06em;
 font-size:1.6em;
 }

@@ -7,6 +7,7 @@
   - Image uploading(& thumbnailing) via attachment_fu
   - Write articles in Textile, Markdown, or HTML
   - Users may vote on comments (no registration required)
+  - Comments may use Textile and are proteted using Whistler
   - completely UJS using JQuery
   - RESTful architecture
 
@@ -19,6 +20,7 @@
   - RedCloth
   - CodeRay
   - merb\_can\_filter
+  - whistler
   - image_science
   
 ### Get Started - clone,configure,migrate

@@ -3,9 +3,7 @@ class Articles < Application
   
   before :login_required, :exclude => [:index, :show]
   #before :basic_authentication, :exclude => [:index, :show]
-  
   before :layout
-  before :articles
   
   def index
     display @articles

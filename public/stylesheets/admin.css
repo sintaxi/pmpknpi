@@ -60,3 +60,105 @@
   #comments_list td.body{
   width:50%;
   }
+  
+/*-----------------------------------
+  Admin - Sidebar (needs cleanup)
+-----------------------------------*/
+  
+  #sbar h2{
+  border-bottom:1px dotted #ccc;
+  color:#aaa;
+  position:relative;
+  }
+  #sbar h2 a{
+  color:#000;
+  text-decoration:none;
+  }
+  #sbar ul{
+  list-style-type:none;
+  padding:0;
+  }
+  #article_list li{
+  padding:4px 0;
+  }
+  li a.title{
+  font-family:Arial;
+  font-size:14px;
+  color:#333;
+  text-decoration:none;
+  }
+  #asset_list li{
+  float:left;
+  padding-right:4px; 
+  }
+  a.btn{
+  clear:both;
+  text-decoration:none;
+  color:#2244FF;
+  position:absolute;
+  right:0;
+  }
+  #article_list li{
+  position:relative;
+  }
+  .btns{
+  position:absolute;
+  right:0;
+  font-size:10px;
+  }
+  .btns a{
+  text-decoration:none;
+  }
+  .draft{
+  color:#c00;
+  font-weight:bold;
+  }
+  .listing{
+  clear:both;
+  margin-bottom:15px;
+  }
+
+/*-----------------------------------
+  Admin - Asset Uploader (needs cleanup)
+-----------------------------------*/ 
+  
+  #asset_form{
+  padding:15px 30px 30px 30px;
+  background:#eee;
+  }
+  #images ul{
+  list-style-type:none;
+  padding:0;
+  margin:0;
+  }
+  #images li{
+  float:left;
+  margin:5px;
+  padding:0;
+  }
+  #images a img{
+  border:1px solid #aaa;
+  padding:4px;
+  display:block;
+  }
+  #images a img:hover{
+  border-color:#24F;
+  }
+  li.asset{
+  position:relative;
+  }
+  .asset_panel{
+  position:absolute;
+  bottom:5px;
+  right:5px;
+  background:#fff;
+  font-size:10px;
+  padding-top:3px;
+  padding-left:5px;
+  }
+  .asset_panel a{
+  text-decoration:none;
+  }
+  a.del{
+  color:#E24;
+  }

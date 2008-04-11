@@ -1,57 +1,5 @@
-<style type="text/css" media="screen">
-  #sbar h2{
-  border-bottom:1px dotted #ccc;
-  color:#aaa;
-  }
-  #sbar h2 a{
-  color:#000;
-  text-decoration:none;
-  }
-  #sbar ul{
-  list-style-type:none;
-  padding:0;
-  }
-  #article_list li{
-  padding:4px 0;
-  }
-  .article_btn{
-
-  }
-  li a.title{
-  font-family:Arial;
-  font-size:14px;
-  color:#333;
-  text-decoration:none;
-  }
-  
-  #asset_list li{
-  float:left;
-  padding-right:4px; 
-  }
-  #sbar a.btn{
-  clear:both;
-  text-decoration:none;
-  color:#2244FF;
-  }
-  .btns{
-  float:right;
-  font-size:10px;
-  }
-  .btns a{
-  text-decoration:none;
-  }
-  .draft{
-  color:#c00;
-  font-weight:bold;
-  }
-  .listing{
-  clear:both;
-  margin-bottom:15px;
-  }
-</style>
-
 <div id="article_list" class="listing">
-  <h2><a href="/articles">Articles</a> <%= @articles.length %> <%= link_to 'new', "/articles/new", :class => 'btn right' %></h2>
+  <h2><a href="/articles">Articles</a> <%= @articles.length %> <%= link_to 'new', "/articles/new", :class => 'btn' %></h2>
   <% unless @articles.empty? %>
     <ul>
     <% for article in @articles %>
@@ -67,9 +15,8 @@
   <% end %>
 </div>
 
-
 <div id="asset_list" class="listing">
-  <h2><a href="/assets">Assets</a> <%= @assets.length %> <%#= link_to 'add', "/assets", :class => 'btn right' %></h2>
+  <h2><a href="/assets">Assets</a> <%= @assets.length %> <%#= link_to 'add', "/assets", :class => 'btn' %></h2>
   <% unless @assets.empty? %>
     <ul>
     <% for asset in @assets %>

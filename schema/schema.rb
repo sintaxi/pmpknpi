@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(:version => 3) do
     t.integer  "size"
     t.string   "attachable_type"
     t.integer  "attachable_id"
-    t.datetime "updated_at"
-    t.datetime "created_at"
     t.string   "thumbnail"
     t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "assets", ["parent_id"], :name => "index_assets_on_parent_id"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 3) do
 
   create_table "comments", :force => true do |t|
     t.integer  "article_id"
+    t.boolean  "admin",      :default => false
     t.string   "user_ip"
     t.string   "user_agent"
     t.string   "referrer"
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(:version => 3) do
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["approved"], :name => "index_comments_on_approved"
   add_index "comments", ["article_id"], :name => "index_comments_on_article_id"
 
 end
