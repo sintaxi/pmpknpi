@@ -12,6 +12,7 @@ class Comments < Application
   def create
     @article = Article.find_by_param(params[:article_id])
     @comment = Comment.new(params[:comment].merge(:article => @article))
+    @comment.admin = 1 if authorized?
     @comment.request = request
     @comment.yay = @comment.user_data
     if @comment.save 
@@ -29,7 +30,7 @@ class Comments < Application
     if content_type == :html
       redirect "/articles/#{@article.to_param}"
     else
-      render
+      render :layout => false
     end
   end
   

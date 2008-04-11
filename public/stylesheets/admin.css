@@ -67,6 +67,7 @@
   
   #sbar h2{
   border-bottom:1px dotted #ccc;
+  margin-bottom:5px;
   color:#aaa;
   position:relative;
   }
@@ -77,15 +78,18 @@
   #sbar ul{
   list-style-type:none;
   padding:0;
+  margin:0;
   }
   #article_list li{
-  padding:4px 0;
+  padding:0;
+  margin:0;
   }
-  li a.title{
-  font-family:Arial;
+  li h3 a.title{
+  font-family:Arial, sans-serif;
   font-size:14px;
   color:#333;
   text-decoration:none;
+  margin:0;
   }
   #asset_list li{
   float:left;
@@ -98,12 +102,7 @@
   position:absolute;
   right:0;
   }
-  #article_list li{
-  position:relative;
-  }
   .btns{
-  position:absolute;
-  right:0;
   font-size:10px;
   }
   .btns a{
@@ -112,10 +111,11 @@
   .draft{
   color:#c00;
   font-weight:bold;
+  font-size:11px;
   }
   .listing{
   clear:both;
-  margin-bottom:15px;
+  overflow:auto;
   }
 
 /*-----------------------------------

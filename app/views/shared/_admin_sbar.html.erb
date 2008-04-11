@@ -4,7 +4,7 @@
     <ul>
     <% for article in @articles %>
       <li>
-        <%= '<span class="draft">draft - </span>' unless article.published_at %><%= link_to article.title, "/articles/#{article.to_param}", :class => 'title' %>
+        <h3><%= '<span class="draft">draft - </span>' unless article.published_at %><%= link_to article.title, "/articles/#{article.to_param}", :class => 'title' %></h3>
         <span class="btns">
           <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
           <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %>
