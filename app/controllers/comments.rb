@@ -33,6 +33,16 @@ class Comments < Application
     end
   end
   
+  def destroy
+    @comment = Comment.find(params[:id])
+    raise NotFound unless @comment
+    if @comment.destroy
+      redirect "/comments"
+    else
+      raise BadRequest
+    end
+  end
+  
   private
   
   def layout
