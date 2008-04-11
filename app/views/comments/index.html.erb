@@ -9,13 +9,18 @@
       </tr>
       <% @comments.each do |comment| %>
       <tr>
-        <td><%= comment.article.title %></td>
+        <td>
+          <%= comment.article.title %>
+        </td>
         <td><%= comment.created_at.strftime("%B %d") %></td>
         <td>
           <%= comment.yay_array.length %>/<%= comment.nay_array.length %>
           <%= comment.vote_count %>
         </td>
-        <td class="body"><%= comment.body_html %></td>
+        <td class="body">
+          <%= comment.body_html %><br />
+          <%= link_to 'destroy', "/comments/#{comment.id}", :class => 'delete' %>
+        </td>
       </tr>
       <% end %>
     </table>
