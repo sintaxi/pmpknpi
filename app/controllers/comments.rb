@@ -30,7 +30,7 @@ class Comments < Application
     if content_type == :html
       redirect "/articles/#{@article.to_param}"
     else
-      render :template => "comments/update.js", :layout => false
+      render :layout => false
     end
   end
   
