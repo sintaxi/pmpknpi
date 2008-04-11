@@ -1,8 +1,8 @@
 class Comments < Application
   provides :xml, :js, :yaml
   
-  before :login_required
-  before :layout, :exclude => :update
+  before :login_required, :only => ['index']
+  before :layout, :only => [:index]
   
   def index
     @comments = Comment.find(:all, :include => :article)
@@ -30,7 +30,7 @@ class Comments < Application
     if content_type == :html
       redirect "/articles/#{@article.to_param}"
     else
-      display :layout => false
+      render :template => "comments/update.js", :layout => false
     end
   end
   
