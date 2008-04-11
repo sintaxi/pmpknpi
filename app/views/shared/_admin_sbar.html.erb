@@ -1,6 +1,11 @@
 <style type="text/css" media="screen">
-  #sbar h3{
+  #sbar h2{
   border-bottom:1px dotted #ccc;
+  color:#aaa;
+  }
+  #sbar h2 a{
+  color:#000;
+  text-decoration:none;
   }
   #sbar ul{
   list-style-type:none;
@@ -14,8 +19,8 @@
   }
   li a.title{
   font-family:Arial;
-  font-size:12px;
-  color:#666;
+  font-size:14px;
+  color:#333;
   text-decoration:none;
   }
   
@@ -23,31 +28,48 @@
   float:left;
   padding-right:4px; 
   }
-  .btn{
+  #sbar a.btn{
   clear:both;
+  text-decoration:none;
+  color:#2244FF;
+  }
+  .btns{
+  float:right;
+  font-size:10px;
+  }
+  .btns a{
   text-decoration:none;
   }
   .draft{
-  color:red;
+  color:#c00;
+  font-weight:bold;
+  }
+  .listing{
+  clear:both;
+  margin-bottom:15px;
   }
 </style>
 
-<div id="article_list">
-  <h3>Articles(<%= @articles.length %>) - <%= link_to 'new', "/articles/new", :class => 'btn' %></h3>
+<div id="article_list" class="listing">
+  <h2><a href="/articles">Articles</a> <%= @articles.length %> <%= link_to 'new', "/articles/new", :class => 'btn right' %></h2>
   <% unless @articles.empty? %>
     <ul>
     <% for article in @articles %>
-      <li><%= '<span class="draft">draft - </span>' unless article.published_at %><%= link_to article.title, "/articles/#{article.to_param}", :class => 'title' %> -
-      <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
-      <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %></li>
+      <li>
+        <%= '<span class="draft">draft - </span>' unless article.published_at %><%= link_to article.title, "/articles/#{article.to_param}", :class => 'title' %>
+        <span class="btns">
+          <%= link_to 'edit', "/articles/#{article.to_param}/edit" %> |
+          <%= link_to 'destroy', "/articles/#{article.to_param}", :class => 'delete' %>
+        </span>
+      </li>
     <% end %>
     </ul>
   <% end %>
 </div>
 
 
-<div id="asset_list">
-  <h3>Assets(<%= @assets.length %>) - <%= link_to 'manage', "/assets", :class => 'btn' %></h3>
+<div id="asset_list" class="listing">
+  <h2><a href="/assets">Assets</a> <%= @assets.length %> <%#= link_to 'add', "/assets", :class => 'btn right' %></h2>
   <% unless @assets.empty? %>
     <ul>
     <% for asset in @assets %>
@@ -55,4 +77,8 @@
     <% end %>
     </ul>
   <% end %>
+</div>
+
+<div id="comment_list" class="listing">
+  <h2><a href="/comments">Comments</a> <%= @comments_count %> <%#= link_to 'review', "/comments", :class => 'btn right' %></h2>
 </div>
