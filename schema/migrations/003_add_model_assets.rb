@@ -1,4 +1,4 @@
-class AssetMigration < ActiveRecord::Migration
+class AddModelAssets < ActiveRecord::Migration
   def self.up
     create_table :assets do |t|
       t.column :filename,           :string
