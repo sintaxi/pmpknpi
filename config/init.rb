@@ -61,4 +61,4 @@ SETTINGS = YAML.load_file("#{Merb.root}/config/settings.yml")[Merb.environment]
 
 # MIME TYPES
 Merb.add_mime_type(:rss,  :to_xml,  %w[application/rss+xml])
-Merb.add_mime_type(:atom, :to_xml,  %w[application/atom+xml])
+Merb.add_mime_type(:atom, :to_atom, %w[application/atom+xml])
