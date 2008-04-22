@@ -15,15 +15,13 @@ class Comment < ActiveRecord::Base
     :if => :website_submitted?
   
   # Callbacks
+  before_create :set_defaults
   before_save :filter_body
   
-  # Plugins
-  # merb_can_filter :body << need to add whistler support to merb_can_filter
-  #
-  # Attributes
-  # def filter
-  #   "Textile"
-  # end
+  def set_defaults
+    self.yay = user_data
+    self.nay = ""
+  end
   
   def filter_body
     write_attribute(:body_html, RedCloth.new(Whistler.white_list(body)).to_html  )

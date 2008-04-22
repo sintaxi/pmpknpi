@@ -3,8 +3,8 @@
 
 <div class="comment<%= ' admin' if comment.admin %>" id="comment_<%= comment.id %>">
  <div class="arrows">
-   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/yay" class="<%= upclass %> remote" id="arrowup_<%= comment.id %>"></a></span>
-   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/nay" class="<%= downclass %> remote" id="arrowdown_<%= comment.id %>"></a></span>
+   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/yay" class="remote <%= upclass %>" id="arrowup_<%= comment.id %>"></a></span>
+   <span><a href="/articles/<%= @article.to_param %>/comments/<%= comment.id %>/nay" class="remote <%= downclass %>" id="arrowdown_<%= comment.id %>"></a></span>
  </div>
  <div class="comment-main">
    <div class="comment-head">

@@ -1,7 +1,7 @@
 class Comments < Application
   provides :xml, :js, :yaml
   
-  before :login_required, :only => ['index']
+  before :login_required, :only => [:index]
   before :layout, :only => [:index]
   
   def index
@@ -9,12 +9,11 @@ class Comments < Application
     render
   end
   
-  def create
+  def create    
     @article = Article.find_by_param(params[:article_id])
     @comment = Comment.new(params[:comment].merge(:article => @article))
     @comment.admin = 1 if authorized?
     @comment.request = request
-    @comment.yay = @comment.user_data
     if @comment.save 
       redirect "/articles/#{@article.to_param}"
     else
