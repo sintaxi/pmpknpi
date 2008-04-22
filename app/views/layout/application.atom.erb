@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><%= SETTINGS["title"] %></title>
+  <link href="<%= SETTINGS["domain"] %>/articles.atom" rel="self" type="application/atom+xml"/>
+  <link href="<%= SETTINGS["domain"] %>" rel="alternate" type="text/html"/>
+  <id><%= SETTINGS["domain"] %>/</id>
+  <updated><%= @articles.first.updated_at.strftime("%Y-%m-%dT%H:%M:%SZ") %></updated>
+  <author>
+    <name>Your name here</name>
+    <email>your email here</email>
+  </author>
+  <%- for article in @articles -%>
+    <% unless article.published_at.nil? -%>
+    <entry xml:base="<%= SETTINGS["domain"] %>">
+      <author>
+        <name>Thurston Moore (replace with your name)</name>
+      </author>
+      <title><![CDATA[ <%= article.title %> ]]></title>
+      <id><%= SETTINGS["domain"] + "#{article.published_at.strftime("%Y-%m-%d:%k")}" %></id>
+      <published><%= article.published_at.strftime("%Y-%m-%dT%H:%M:%SZ") %></published>
+      <updated><%= article.updated_at.strftime("%Y-%m-%dT%H:%M:%SZ") %></updated>
+      <link href="<%= SETTINGS['domain'] + "/articles/" + article.permalink %>" rel="alternate" type="text/html"/>
+      <%= '<summary type="html">' + article.excerpt_html + '</summary>' unless article.excerpt_html.blank? %>
+      <content type="html">
+        <![CDATA[ <%= article.body_html %> ]]>
+      </content>
+    </entry>
+    <% end %>
+  <%- end unless @articles.empty? -%>
+</feed>
