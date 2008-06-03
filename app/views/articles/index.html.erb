@@ -4,8 +4,7 @@
   
       <h1 class="title" title="<%= article.published_at.strftime("%Y-%m-%d") unless article.published_at.nil? %>">
         <%= link_to article.title, "/articles/#{article.to_param}" %></h1>
-      <h2 class="created_at"><%#= time_ago_in_words(article.published_at) + ' ago' unless article.published_at.nil? %>
-        <%= article.published_at.nil? ? 'unpublished' : time_ago_in_words(article.published_at) + ' ago' %> /
+      <h2 class="created_at"><%= time_ago_in_words(article.published_at) + ' ago' unless article.published_at.nil? %> /
         <%= pluralize article.comments_count, 'Comment' %>
       </h2>
 

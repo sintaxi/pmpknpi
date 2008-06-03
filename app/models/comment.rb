@@ -24,7 +24,7 @@ class Comment < ActiveRecord::Base
   end
   
   def filter_body
-    write_attribute(:body_html, RedCloth.new(Whistler.white_list(body)).to_html  )
+    write_attribute(:body_html, RedCloth.new( Whistler.white_list(body), [:hard_breaks] ).to_html )
   end
   
   def request=(request)
