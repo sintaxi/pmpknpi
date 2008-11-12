@@ -1,7 +1,7 @@
-<% form_for :asset, :action => url(:assets), :multipart => true do %>
-	<%= file_control :uploaded_data, :label => "Upload Asset" %>
+<%= form_for :asset, :action => "/assets", :multipart => true do %>
+	<%= file_field :uploaded_data, :label => "Upload Asset" %>
 	<input name="commit" type="submit" value="Upload" />
-<% end %>
+<% end =%>
 
 <%= "<h2>You have no assets :(</h2>" if @assets.empty? %>
   

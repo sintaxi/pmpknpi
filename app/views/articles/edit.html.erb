@@ -1,6 +1,6 @@
 <%= error_messages_for @article %>
 
-<% form_for :article, :action => "/articles/#{@article.to_param}", :method => :put do %>
+<%= form_for :article, :action => "/articles/#{@article.to_param}", :method => :put do %>
   <%= partial :form %>
   <%= submit_button 'Commit Changes', :class => 'submit clear' %>
-<% end %>
+<% end =%>

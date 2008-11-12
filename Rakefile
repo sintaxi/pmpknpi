@@ -1,14 +1,9 @@
 require 'rubygems'
-Gem.clear_paths
-Gem.path.unshift(File.join(File.dirname(__FILE__), "gems"))
-
-require 'rake'
 require 'rake/rdoctask'
-require 'rake/testtask'
-require 'spec/rake/spectask'
-require 'fileutils'
+
 require 'merb-core'
-require 'rubigen'
+require 'merb-core/tasks/merb'
+
 include FileUtils
 
 # Load the basic runtime dependencies; this will include 
@@ -19,19 +14,22 @@ Merb.load_dependencies(:environment => init_env)
 # Get Merb plugins and dependencies
 Merb::Plugins.rakefiles.each { |r| require r } 
 
-desc "start runner environment"
+# Load any app level custom rakefile extensions from lib/tasks
+tasks_path = File.join(File.dirname(__FILE__), "lib", "tasks")
+rake_files = Dir["#{tasks_path}/*.rake"]
+rake_files.each{|rake_file| load rake_file }
+
+desc "Start runner environment"
 task :merb_env do
   Merb.start_environment(:environment => init_env, :adapter => 'runner')
 end
 
-##############################################################################
-# ADD YOUR CUSTOM TASKS BELOW
-##############################################################################
+require 'spec/rake/spectask'
+require 'merb-core/test/tasks/spectasks'
+desc 'Default: run spec examples'
+task :default => 'spec'
 
-desc "calculate timezoze offset"
-task :timezone_offset do
-  offset = Time.now.hour - Time.now.utc.hour
-  puts "calculating offset...\n\n"
-  puts "  * Your timezone is #{offset} hours off UTC"
-  puts "  * In config/settings.yml set 'timezone_offset: #{offset}'\n\n"
-end
+##############################################################################
+# ADD YOUR CUSTOM TASKS IN /lib/tasks
+# NAME YOUR RAKE FILES file_name.rake
+##############################################################################

@@ -1,10 +1,12 @@
+require "activerecord"
+require "merb_can_filter"
+
 # Make the app's "gems" directory a place where gems are loaded from
 Gem.clear_paths
 Gem.path.unshift(Merb.root / "gems")
 
 # Make the app's "lib" directory a place where ruby files get "require"d from
 $LOAD_PATH.unshift(Merb.root / "lib")
-
 
 Merb::Config.use do |c|
   c[:session_id_key] = 'pmpknpi_session_id'
@@ -27,11 +29,7 @@ require 'RedCloth'
 require 'whistler'
 
 ### Dependencies
-dependencies  "rubygems",
-              "coderay",
-              "merb_helpers",
-              "merb-assets",
-              "merb_can_filter"
+dependencies  "coderay", "merb-helpers", "merb-assets"
 
 # FROM merb_has_rails_plugins
 Merb::BootLoader.before_app_loads do

@@ -1,4 +1,4 @@
-<% form_for :asset, :action => url(:assets), :multipart => true do %>
-	<%= file_control :uploaded_data, :label => "With Helpers" %>
+<%= form_for :asset, :action => "/assets", :multipart => true do %>
+	<%= file_field :uploaded_data, :label => "With Helpers" %>
 	<input name="commit" type="submit" value="Upload" />
-<% end %>
+<% end =%>
