@@ -12,12 +12,12 @@ module Technoweenie # :nodoc:
       #
       # == Configuration
       #
-      # Configuration is done via <tt>Merb.root/config/amazon_s3.yml</tt> and is loaded according to the <tt>RAILS_ENV</tt>.
+      # Configuration is done via <tt>RAILS_ROOT/config/amazon_s3.yml</tt> and is loaded according to the <tt>RAILS_ENV</tt>.
       # The minimum connection options that you must specify are a bucket name, your access key id and your secret access key.
       # If you don't already have your access keys, all you need to sign up for the S3 service is an account at Amazon.
       # You can sign up for S3 and get access keys by visiting http://aws.amazon.com/s3.
       #
-      # Example configuration (Merb.root/config/amazon_s3.yml)
+      # Example configuration (RAILS_ROOT/config/amazon_s3.yml)
       # 
       #   development:
       #     bucket_name: appname_development
@@ -36,7 +36,7 @@ module Technoweenie # :nodoc:
       #
       # You can change the location of the config path by passing a full path to the :s3_config_path option.
       #
-      #   has_attachment :storage => :s3, :s3_config_path => (Merb.root + '/config/s3.yml')
+      #   has_attachment :storage => :s3, :s3_config_path => (RAILS_ROOT + '/config/s3.yml')
       #
       # === Required configuration parameters
       #
@@ -132,21 +132,15 @@ module Technoweenie # :nodoc:
           end
 
           begin
-            @@s3_config_path = base.attachment_options[:s3_config_path] || (Merb.root + '/config/amazon_s3.yml')
-            @@s3_config = YAML.load_file(@@s3_config_path)[ENV['RAILS_ENV']].symbolize_keys
+            @@s3_config_path = base.attachment_options[:s3_config_path] || (RAILS_ROOT + '/config/amazon_s3.yml')
+            @@s3_config = @@s3_config = YAML.load(ERB.new(File.read(@@s3_config_path)).result)[RAILS_ENV].symbolize_keys
           #rescue
           #  raise ConfigFileNotFoundError.new('File %s not found' % @@s3_config_path)
           end
 
           @@bucket_name = s3_config[:bucket_name]
 
-          Base.establish_connection!(
-            :access_key_id     => s3_config[:access_key_id],
-            :secret_access_key => s3_config[:secret_access_key],
-            :server            => s3_config[:server],
-            :port              => s3_config[:port],
-            :use_ssl           => s3_config[:use_ssl]
-          )
+          Base.establish_connection!(s3_config.slice(:access_key_id, :secret_access_key, :server, :port, :use_ssl, :persistent, :proxy))
 
           # Bucket.create(@@bucket_name)
 
@@ -162,7 +156,7 @@ module Technoweenie # :nodoc:
         end
         
         def self.port_string
-          @port_string ||= s3_config[:port] == (s3_config[:use_ssl] ? 443 : 80) ? '' : ":#{s3_config[:port]}"
+          @port_string ||= (s3_config[:port].nil? || s3_config[:port] == (s3_config[:use_ssl] ? 443 : 80)) ? '' : ":#{s3_config[:port]}"
         end
 
         module ClassMethods
@@ -209,7 +203,7 @@ module Technoweenie # :nodoc:
         #
         # The resulting url is in the form: <tt>http(s)://:server/:bucket_name/:table_name/:id/:file</tt> where
         # the <tt>:server</tt> variable defaults to <tt>AWS::S3 URL::DEFAULT_HOST</tt> (s3.amazonaws.com) and can be
-        # set using the configuration parameters in <tt>Merb.root/config/amazon_s3.yml</tt>.
+        # set using the configuration parameters in <tt>RAILS_ROOT/config/amazon_s3.yml</tt>.
         #
         # The optional thumbnail argument will output the thumbnail's filename (if any).
         def s3_url(thumbnail = nil)
@@ -242,8 +236,8 @@ module Technoweenie # :nodoc:
         #
         #   @photo.authenticated_s3_url('thumbnail', :expires_in => 5.hours, :use_ssl => true)
         def authenticated_s3_url(*args)
-          thumbnail = args.first.is_a?(String) ? args.first : nil
-          options   = args.last.is_a?(Hash)    ? args.last  : {}
+          options   = args.extract_options!
+          thumbnail = args.shift
           S3Object.url_for(full_filename(thumbnail), bucket_name, options)
         end
 
@@ -293,7 +287,7 @@ module Technoweenie # :nodoc:
             if save_attachment?
               S3Object.store(
                 full_filename,
-                temp_data,
+                (temp_path ? File.open(temp_path) : temp_data),
                 bucket_name,
                 :content_type => content_type,
                 :access => attachment_options[:s3_access]

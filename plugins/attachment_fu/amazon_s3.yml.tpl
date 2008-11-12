@@ -1,7 +1,7 @@
 development:
-  bucket_name: framework_development_brock
-  access_key_id: 0YYPWB06NEXV7MX6RNR2
-  secret_access_key: t75uEovn5vru2e1giVhxFCFGfYySEoWtcP/tqdSM
+  bucket_name: appname_development
+  access_key_id: 
+  secret_access_key: 
 
 test:
   bucket_name: appname_test

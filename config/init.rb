@@ -1,6 +1,8 @@
 require "activerecord"
 require "merb_can_filter"
 
+RAILS_ROOT = Merb.root
+
 # Make the app's "gems" directory a place where gems are loaded from
 Gem.clear_paths
 Gem.path.unshift(Merb.root / "gems")

@@ -26,7 +26,7 @@ class Geometry
   end
 
   # Construct an object from a geometry string
-  RE = /\A(\d*)(?:x(\d+))?([-+]\d+)?([-+]\d+)?([%!<>@]?)\Z/
+  RE = /\A(\d*)(?:x(\d+)?)?([-+]\d+)?([-+]\d+)?([%!<>@]?)\Z/
 
   def self.from_s(str)
     raise(ArgumentError, "no geometry string specified") unless str
@@ -46,8 +46,7 @@ class Geometry
     str << "%g" % @height if @height > 0
     str << "%+d%+d" % [@x, @y] if (@x != 0 || @y != 0)
     str << FLAGS[@flag.to_i]
-    #added the line below for croping
-    str << RFLAGS.index(@flag)
+    #str << RFLAGS.index(@flag)
   end
   
   # attempts to get new dimensions for the current geometry string given these old dimensions.
@@ -82,7 +81,7 @@ class Geometry
         new_height = orig_height if @flag && orig_height.send(@flag, new_height)
     end
 
-    [new_width, new_height].collect! { |v| v.round }
+    [new_width, new_height].collect! { |v| [v.round, 1].max }
   end
 end
 
